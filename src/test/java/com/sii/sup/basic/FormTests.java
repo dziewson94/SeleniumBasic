@@ -3,6 +3,8 @@ package com.sii.sup.basic;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.Helper;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 import static com.sii.sup.basic.utils.FormTestStaticValues.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Execution(ExecutionMode.CONCURRENT)
 public class FormTests extends TestBase {
 
     private String name;
