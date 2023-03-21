@@ -21,7 +21,7 @@ import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-import static com.sii.sup.basic.staticvalues.FormTestStaticValues.*;
+import static com.sii.sup.staticvalues.StaticValues.FormTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)

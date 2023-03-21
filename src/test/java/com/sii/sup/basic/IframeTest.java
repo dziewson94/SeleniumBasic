@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.Properties;
 
-import static com.sii.sup.basic.staticvalues.IframeTestStaticValues.FIRST_IFRAME_PROPERTY;
+import static com.sii.sup.staticvalues.StaticValues.IframeTest.FIRST_IFRAME_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)

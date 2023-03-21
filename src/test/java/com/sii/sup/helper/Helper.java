@@ -60,6 +60,10 @@ public class Helper {
         return FileHelper.readProperties("iframe/iframe.properties");
     }
 
+    public static Properties readMenuProperties() {
+        return FileHelper.readProperties("menu/menu.properties");
+    }
+
     public static WebElement findWebElementById(List<WebElement> elements, String id) {
         return elements.stream().filter(el -> el.getAttribute("id").equals(id)).findFirst().orElse(elements.get(0));
     }
@@ -72,7 +76,7 @@ public class Helper {
         StringBuilder sb = new StringBuilder(length);
 
         for (int i = 0; i < length; i++) {
-            int asciiValue = ThreadLocalRandom.current().nextInt(33, 127);
+            int asciiValue = ThreadLocalRandom.current().nextInt(97, 122);
             sb.append((char) asciiValue);
         }
         return sb.toString();

@@ -8,7 +8,8 @@ public enum Attributes {
     TABLE_ROW("tr"),
     TABLE_COLUMN("td"),
     TABLE_HEADER("th"),
-    BODY("body");
+    BODY("body"),
+    TYPE("type");
 
     private final String value;
 

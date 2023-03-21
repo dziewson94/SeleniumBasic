@@ -15,11 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Properties;
 
-import static com.sii.sup.basic.staticvalues.AlertTestStaticValues.*;
+import static com.sii.sup.staticvalues.StaticValues.AlertTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
-public class AlertTest extends TestBase {
+class AlertTest extends TestBase {
     private Properties properties;
 
     public void initData() {
@@ -30,7 +30,7 @@ public class AlertTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/alerts.php"})
-    public void simpleAlertPopUp(String url) {
+    void simpleAlertPopUp(String url) {
         initData();
         webDriver.get(url);
         WebElement simpleAlertWebElement = webDriver.findElement(By.id(properties.getProperty(SIMPLE_ALERT_PROPERTY)));
@@ -45,7 +45,7 @@ public class AlertTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/alerts.php"})
-    public void promptAlertBox(String url) {
+    void promptAlertBox(String url) {
         initData();
         webDriver.get(url);
         WebElement promptAlertButton = webDriver.findElement(By.id(properties.getProperty(PROMPT_ALERT_PROPERTY)));
@@ -64,7 +64,7 @@ public class AlertTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/alerts.php"})
-    public void confirmAlertBox(String url) {
+    void confirmAlertBox(String url) {
         initData();
         webDriver.get(url);
         WebElement alertButton = webDriver.findElement(By.id(properties.getProperty(CONFIRM_ALERT_PROPERTY)));
@@ -88,7 +88,7 @@ public class AlertTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/alerts.php"})
-    public void delayedAlertPopUp(String url) {
+    void delayedAlertPopUp(String url) {
         initData();
         webDriver.get(url);
         WebElement delayedAlert = webDriver.findElement(By.id(properties.getProperty(DELAYED_ALERT_PROPERTY)));

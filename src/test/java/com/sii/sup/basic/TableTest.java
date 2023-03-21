@@ -2,7 +2,7 @@ package com.sii.sup.basic;
 
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.basic.staticvalues.TableTestStaticValues;
+import com.sii.sup.staticvalues.StaticValues;
 import com.sii.sup.helper.Helper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,7 +33,7 @@ class TableTest extends TestBase {
     void tableTest(String url) {
         initProperties();
         webDriver.get(url);
-        WebElement tableWebElement = webDriver.findElement(By.className(properties.getProperty(TableTestStaticValues.TABLE_PROPERTY)));
+        WebElement tableWebElement = webDriver.findElement(By.className(properties.getProperty(StaticValues.TableTest.TABLE_PROPERTY)));
         WebElement tbodyWebElement = tableWebElement.findElement(By.tagName(Attributes.TBODY.getValue()));
         List<WebElement> rows = tbodyWebElement.findElements(By.tagName(Attributes.TABLE_ROW.getValue()));
         List<Mountain> mountains = new ArrayList<>();
@@ -50,12 +50,12 @@ class TableTest extends TestBase {
             mountains.add(mountain);
         }
         List<Mountain> filteredList = mountains.stream().filter(mountain ->
-                mountain.state.equals(properties.getProperty(TableTestStaticValues.STATE_PROPERTY)) &&
+                mountain.state.equals(properties.getProperty(StaticValues.TableTest.STATE_PROPERTY)) &&
                         (Integer.parseInt(mountain.height) >
-                                Integer.parseInt(properties.getProperty(TableTestStaticValues.MIN_HEIGHT_PROPERTY)))
+                                Integer.parseInt(properties.getProperty(StaticValues.TableTest.MIN_HEIGHT_PROPERTY)))
         ).toList();
         filteredList.forEach(mt -> logger.info(mt.toString()));
-        assertThat(filteredList).hasSize(Integer.parseInt(properties.getProperty(TableTestStaticValues.EXPECTED_RESULT_RECORDS_PROPERTY)));
+        assertThat(filteredList).hasSize(Integer.parseInt(properties.getProperty(StaticValues.TableTest.EXPECTED_RESULT_RECORDS_PROPERTY)));
     }
 
     private static class Mountain {

@@ -2,7 +2,7 @@ package com.sii.sup.basic;
 
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.basic.staticvalues.WindowTestStaticValues;
+import com.sii.sup.staticvalues.StaticValues;
 import com.sii.sup.helper.Helper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import java.util.Properties;
 import java.util.Set;
 
-import static com.sii.sup.basic.staticvalues.WindowTestStaticValues.*;
+import static com.sii.sup.staticvalues.StaticValues.WindowTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WindowTest extends TestBase {
@@ -62,7 +62,7 @@ class WindowTest extends TestBase {
         WebElement body = webDriver.findElement(By.tagName(Attributes.BODY.getValue()));
         logger.info("Text from body" + body.getText());
         assertThat(body.getText()).isEqualTo(
-                properties.getProperty(WindowTestStaticValues.NEW_MESSAGE_WINDOW_CONTENT_PROPERTY));
+                properties.getProperty(StaticValues.WindowTest.NEW_MESSAGE_WINDOW_CONTENT_PROPERTY));
         webDriver.close();
         webDriver.switchTo().window(mainWindowHandle);
     }
