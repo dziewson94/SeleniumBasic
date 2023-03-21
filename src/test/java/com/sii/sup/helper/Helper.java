@@ -44,12 +44,15 @@ public class Helper {
         return FileHelper.getDownloadDirFilesNames();
     }
 
-    public static void removeFormTestTempFile() {
-        FileHelper.removeTempFormFile();
+    public static Properties readTableProperties() {
+        return FileHelper.readProperties("table/table.properties");
     }
 
     public static Properties readFormProperties() {
         return FileHelper.readProperties("form/form.properties");
+    }
+    public static Properties readIframeProperties() {
+        return FileHelper.readProperties("iframe/iframe.properties");
     }
 
     public static WebElement findWebElementById(List<WebElement> elements, String id) {
@@ -60,4 +63,13 @@ public class Helper {
         return FileHelper.readProperties("alert/alert.properties");
     }
 
+    public static String generateRandomString(int length) {
+        StringBuilder sb = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            int asciiValue = ThreadLocalRandom.current().nextInt(33, 127);
+            sb.append((char) asciiValue);
+        }
+        return sb.toString();
+    }
 }

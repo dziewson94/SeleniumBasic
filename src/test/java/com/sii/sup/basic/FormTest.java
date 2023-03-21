@@ -21,11 +21,11 @@ import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-import static com.sii.sup.basic.utils.FormTestStaticValues.*;
+import static com.sii.sup.basic.staticvalues.FormTestStaticValues.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
-public class FormTests extends TestBase {
+public class FormTest extends TestBase {
 
     private String name;
     private String lastName;
@@ -43,6 +43,8 @@ public class FormTests extends TestBase {
         email = (String) Helper.getRandomListElement(Helper.getEmails());
         age = ThreadLocalRandom.current().nextInt(18, 80);
         properties = Helper.readFormProperties();
+        logger.info("Form test properties loaded");
+
         fileToUpload = Helper.getTempFileForFormTest();
         logger.info(String.format("Test will use name:%s lastname:%s email:%s age:%d in input forms", name, lastName, email, age));
 

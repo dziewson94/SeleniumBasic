@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.concurrent.ThreadLocalRandom;
 
 class FileHelper {
     protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class);
@@ -45,7 +44,7 @@ class FileHelper {
     }
 
     static File createTempFileInFormResources() {
-        String content = generateRandomString(20000);
+        String content = Helper.generateRandomString(20000);
         File file = new File("");
         try {
             URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("form");
@@ -80,22 +79,4 @@ class FileHelper {
         return Arrays.stream(Objects.requireNonNull(new File(getDownloadDirPath()).listFiles())).map(File::getName).toList();
     }
 
-    static void removeTempFormFile() {
-        try {
-            File file = Paths.get(FileHelper.class.getClassLoader().getResource("form/temp.txt").toURI()).toFile();
-            if (file.exists()) logger.info("Temp file deleted:" + file.delete());
-        } catch (URISyntaxException e) {
-            logger.warn(String.format("Failed to remove temp form file .%n%s", e.getMessage()));
-        }
-    }
-
-    private static String generateRandomString(int length) {
-        StringBuilder sb = new StringBuilder(length);
-
-        for (int i = 0; i < length; i++) {
-            int asciiValue = ThreadLocalRandom.current().nextInt(33, 127);
-            sb.append((char) asciiValue);
-        }
-        return sb.toString();
-    }
 }

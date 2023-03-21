@@ -1,4 +1,4 @@
-package com.sii.sup.basic.utils;
+package com.sii.sup.basic.staticvalues;
 
 public class AlertTestStaticValues {
     public static final String SIMPLE_ALERT_PROPERTY = "SIMPLE_ALERT";

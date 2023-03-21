@@ -1,4 +1,4 @@
-package com.sii.sup.basic.utils;
+package com.sii.sup.basic.staticvalues;
 
 public class FormTestStaticValues {
     public static final String DESIRED_PROF_PROPERTY = "DESIRED_PROF";

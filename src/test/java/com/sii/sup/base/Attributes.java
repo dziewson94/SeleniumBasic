@@ -4,8 +4,10 @@ public enum Attributes {
     ID("id"),
     VALUE("value"),
     INPUT("input"),
-    NAME("name"),
-    SELECT("select");
+    TBODY("tbody"),
+    TABLE_ROW("tr"),
+    TABLE_COLUMN("td"),
+    TABLE_HEADER("th");
 
     private final String value;
 

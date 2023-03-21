@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Properties;
 
-import static com.sii.sup.basic.utils.AlertTestStaticValues.*;
+import static com.sii.sup.basic.staticvalues.AlertTestStaticValues.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
@@ -24,6 +24,8 @@ public class AlertTest extends TestBase {
 
     public void initData() {
         properties = Helper.readAlertProperties();
+        logger.info("Alert test properties loaded");
+
     }
 
     @ParameterizedTest

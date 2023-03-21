@@ -1,10 +1,6 @@
 
 S
 #src/main/java/com/sii/sup/Main.java,0\1\01615125453da252e6378116fcc95e4cf69e7d72
-^
-.src/test/java/com/sii/sup/base/Attributes.java,1\b\1bc440dcdd518af1aeceb1d44f8467e803e37569
-`
-0src/test/java/com/sii/sup/helper/FileHelper.java,9\b\9b274fb321685391ed6f15ce5631de914996f2ea
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 \
