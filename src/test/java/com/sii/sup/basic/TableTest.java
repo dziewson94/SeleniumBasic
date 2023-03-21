@@ -13,14 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
-import static com.sii.sup.basic.staticvalues.IframeTestStaticValues.FIRST_IFRAME_PROPERTY;
-import static com.sii.sup.basic.staticvalues.IframeTestStaticValues.SECOND_IFRAME_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TableTest extends TestBase {
+class TableTest extends TestBase {
     private Properties properties;
+
+    public TableTest() {
+        super();
+    }
 
     private void initProperties() {
         properties = Helper.readTableProperties();
@@ -29,7 +30,7 @@ public class TableTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/table.php"})
-    public void tableTest(String url) {
+    void tableTest(String url) {
         initProperties();
         webDriver.get(url);
         WebElement tableWebElement = webDriver.findElement(By.className(properties.getProperty(TableTestStaticValues.TABLE_PROPERTY)));
@@ -50,11 +51,11 @@ public class TableTest extends TestBase {
         }
         List<Mountain> filteredList = mountains.stream().filter(mountain ->
                 mountain.state.equals(properties.getProperty(TableTestStaticValues.STATE_PROPERTY)) &&
-                        (Integer.valueOf(mountain.height) >
-                                Integer.valueOf(properties.getProperty(TableTestStaticValues.MIN_HEIGHT_PROPERTY)))
+                        (Integer.parseInt(mountain.height) >
+                                Integer.parseInt(properties.getProperty(TableTestStaticValues.MIN_HEIGHT_PROPERTY)))
         ).toList();
-        filteredList.forEach(mt->logger.info(mt.toString()));
-        assertThat(filteredList.size()).isEqualTo(Integer.valueOf(properties.getProperty(TableTestStaticValues.EXPECTED_RESULT_RECORDS_PROPERTY)));
+        filteredList.forEach(mt -> logger.info(mt.toString()));
+        assertThat(filteredList).hasSize(Integer.parseInt(properties.getProperty(TableTestStaticValues.EXPECTED_RESULT_RECORDS_PROPERTY)));
     }
 
     private static class Mountain {
@@ -63,7 +64,6 @@ public class TableTest extends TestBase {
         private String mountainRange;
         private String state;
         private String height;
-
 
 
         void setRank(String rank) {

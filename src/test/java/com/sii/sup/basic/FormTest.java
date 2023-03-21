@@ -25,7 +25,7 @@ import static com.sii.sup.basic.staticvalues.FormTestStaticValues.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
-public class FormTest extends TestBase {
+class FormTest extends TestBase {
 
     private String name;
     private String lastName;
@@ -52,7 +52,7 @@ public class FormTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/form.php"})
-    public void formTest(String url) throws InterruptedException {
+    void formTest(String url) {
         initData();
         webDriver.get(url);
         performOperations();
@@ -99,13 +99,13 @@ public class FormTest extends TestBase {
                 isGreaterThan(numOfFilesInDownloadDir);
         logger.info(String.format("Now there is %d files in download directory", countFilesInDownloadDir()));
         logger.info("Files in download dir:");
-        Helper.getDownloadDirFilesNames().forEach(file -> logger.info(file));
+        Helper.getDownloadDirFilesNames().forEach(logger::info);
         Helper.deleteTestFile();
     }
 
     private int countFilesInDownloadDir() {
         File downloadDir = new File(Helper.getDownloadDirPath());
-        return downloadDir.listFiles().length;
+        return Objects.requireNonNull(downloadDir.listFiles()).length;
     }
 
     private void selectRandomRadiosElement(String expSelProperty) {

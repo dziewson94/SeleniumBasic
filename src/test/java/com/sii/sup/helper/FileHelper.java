@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
+
 class FileHelper {
     protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class);
 
@@ -26,7 +27,7 @@ class FileHelper {
     static List<String> readFileToList(String filePath) {
         List<String> lines = null;
         try {
-            lines = Files.readAllLines(Paths.get(FileHelper.class.getClassLoader().getResource(filePath).toURI()));
+            lines = Files.readAllLines(Paths.get(Objects.requireNonNull(FileHelper.class.getClassLoader().getResource(filePath)).toURI()));
         } catch (IOException | URISyntaxException e) {
             logger.warn(String.format("Failed to read file %s.%n%s", filePath, e.getMessage()));
         }
@@ -48,7 +49,7 @@ class FileHelper {
         File file = new File("");
         try {
             URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("form");
-            Path filePath = Paths.get(formResourcesUrl.toURI()).resolve("temp.txt");
+            Path filePath = Paths.get(Objects.requireNonNull(formResourcesUrl).toURI()).resolve("temp.txt");
             file = filePath.toFile();
             FileWriter writer = new FileWriter(file);
             writer.write(content);

@@ -19,7 +19,7 @@ public class TestBase {
     protected WebDriver webDriver;
 
     @BeforeAll
-    static void setupAll() {
+    public static void setupAll() {
         WebDriverManager.chromedriver().setup();
 
     }
@@ -30,7 +30,7 @@ public class TestBase {
         logger.info("Initializing chrome webdriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        Map<String, Object> prefs = new HashMap<String, Object>();
+        Map<String, Object> prefs = new HashMap<>();
         prefs.put("download.prompt_for_download", false);
         prefs.put("download.default_directory", Helper.getDownloadDirPath());
         options.setExperimentalOption("prefs", prefs);

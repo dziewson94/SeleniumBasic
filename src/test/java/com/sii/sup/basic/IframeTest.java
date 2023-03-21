@@ -1,7 +1,6 @@
 package com.sii.sup.basic;
 
 import com.sii.sup.base.TestBase;
-import com.sii.sup.basic.staticvalues.IframeTestStaticValues;
 import com.sii.sup.helper.Helper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -13,11 +12,10 @@ import org.openqa.selenium.WebElement;
 import java.util.Properties;
 
 import static com.sii.sup.basic.staticvalues.IframeTestStaticValues.FIRST_IFRAME_PROPERTY;
-import static com.sii.sup.basic.staticvalues.IframeTestStaticValues.SECOND_IFRAME_PROPERTY;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
-
-public class IframeTest extends TestBase {
+class IframeTest extends TestBase {
     private Properties properties;
 
     private void initProperties() {
@@ -28,13 +26,12 @@ public class IframeTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/iframes.php"})
-    public void iframeTest(String url) throws InterruptedException {
+    void iframeTest(String url) {
         initProperties();
         webDriver.get(url);
-        WebElement firstIframeWebElement = webDriver.findElement(By.id(properties.getProperty(FIRST_IFRAME_PROPERTY)));
-        WebElement secondIframeWebElement = webDriver.findElement(By.id(properties.getProperty(SECOND_IFRAME_PROPERTY)));
+        WebElement firstIframeWebElement = webDriver.findElement(By.name(properties.getProperty(FIRST_IFRAME_PROPERTY)));
         webDriver.switchTo().frame(firstIframeWebElement);
-        logger.info("Switched to first Iframe");
+        assertThat(firstIframeWebElement).isNotNull();
     }
 
 }

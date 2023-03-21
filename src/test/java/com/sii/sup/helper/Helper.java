@@ -48,9 +48,14 @@ public class Helper {
         return FileHelper.readProperties("table/table.properties");
     }
 
+    public static Properties readWindowProperties() {
+        return FileHelper.readProperties("window/window.properties");
+    }
+
     public static Properties readFormProperties() {
         return FileHelper.readProperties("form/form.properties");
     }
+
     public static Properties readIframeProperties() {
         return FileHelper.readProperties("iframe/iframe.properties");
     }

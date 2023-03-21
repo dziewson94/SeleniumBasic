@@ -7,11 +7,12 @@ public enum Attributes {
     TBODY("tbody"),
     TABLE_ROW("tr"),
     TABLE_COLUMN("td"),
-    TABLE_HEADER("th");
+    TABLE_HEADER("th"),
+    BODY("body");
 
     private final String value;
 
-    private Attributes(String value) {
+    Attributes(String value) {
         this.value = value;
     }
 
