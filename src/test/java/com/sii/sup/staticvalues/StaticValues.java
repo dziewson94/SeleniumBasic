@@ -72,4 +72,15 @@ public class StaticValues {
         public static final String NEW_MESSAGE_WINDOW_CONTENT_PROPERTY = "NEW_MESSAGE_WINDOW_CONTENT";
 
     }
+
+    public static class AccordionTest {
+        public static final String ACCORDION_DIV_PROPERTY = "ACCORDION_DIV";
+        public static final String ACCORDION_TEXT1_PROPERTY = "ACCORDION_TEXT1";
+        public static final String ACCORDION_TEXT2_PROPERTY = "ACCORDION_TEXT2";
+        public static final String ACCORDION_TEXT3_PROPERTY = "ACCORDION_TEXT3";
+        public static final String ACCORDION_TEXT4_PROPERTY = "ACCORDION_TEXT4";
+        public static final String ACCORDION_SECTIONS_PROPERTY = "ACCORDION_SECTIONS";
+
+
+    }
 }

@@ -9,7 +9,8 @@ public enum Attributes {
     TABLE_COLUMN("td"),
     TABLE_HEADER("th"),
     BODY("body"),
-    TYPE("type");
+    TYPE("type"),
+    H3("h3");
 
     private final String value;
 

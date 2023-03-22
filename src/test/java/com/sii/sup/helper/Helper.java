@@ -67,6 +67,10 @@ public class Helper {
     public static WebElement findWebElementById(List<WebElement> elements, String id) {
         return elements.stream().filter(el -> el.getAttribute("id").equals(id)).findFirst().orElse(elements.get(0));
     }
+    public static Properties readAccordionProperties() {
+        return FileHelper.readProperties("accordion/accordion.properties");
+    }
+
 
     public static Properties readAlertProperties() {
         return FileHelper.readProperties("alert/alert.properties");
