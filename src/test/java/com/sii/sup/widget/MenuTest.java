@@ -1,11 +1,14 @@
 package com.sii.sup.widget;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.Helper;
+import com.sii.sup.helper.PropertyHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,55 +23,44 @@ import static com.sii.sup.staticvalues.StaticValues.MenuTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
-
 class MenuTest extends TestBase {
-    private Properties properties;
-    private String name;
-    private String password;
-    private String email;
+    private final Logger logger = new LoggerContext().getLogger(MenuTest.class);
     private User userToCreate;
 
-
     private void initProperties() {
-        properties = Helper.readMenuProperties();
+        this.propertyHelper = new PropertyHelper(MenuTest.class.getSimpleName());
         logger.info("Menu test properties loaded");
 
-    }
-
-    private void initModalTestData() {
-        name = (String) Helper.getRandomListElement(Helper.getNamesList().stream().filter(el -> el.length() > 3 && el.length() < 16).toList());
-        email = (String) Helper.getRandomListElement(Helper.getEmails());
-        password = Helper.generateRandomString(10);
-        userToCreate = new User(name, email, password);
-        logger.info(String.format("Test will create user:%s", userToCreate));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/menu-item.php"})
     void moderJazzMusicTest(String url) {
         initProperties();
-        webDriver.get(url);
-        WebElement menuWebElement = webDriver.findElement(By.id(properties.getProperty(MENU_PROPERTY)));
-        WebElement jazzMenuItem = menuWebElement.findElement(By.xpath(properties.getProperty(JAZZ_MENU_ITEM_XPATH_PROPERTY)));
+        pageHelper.init(url);
+        WebElement menuWebElement = pageHelper.findElementById(getStringProperty(MENU_PROPERTY));
+        WebElement jazzMenuItem = menuWebElement.findElement(By.xpath(getStringProperty(JAZZ_MENU_ITEM_XPATH_PROPERTY)));
         jazzMenuItem.click();
-        WebElement modernSubMenu = jazzMenuItem.findElement(By.xpath(properties.getProperty(MODERN_JAZZ_MENU_ITEM_XPATH_PROPERTY)));
+        WebElement modernSubMenu = jazzMenuItem.findElement(By.xpath(getStringProperty(MODERN_JAZZ_MENU_ITEM_XPATH_PROPERTY)));
         modernSubMenu.click();
         assertThat(modernSubMenu.isDisplayed()).isTrue();
     }
 
     private int getNoOfUsersFromUserTable() {
-        return webDriver.findElement(By.id(properties.getProperty(USER_TABLE_PROPERTY))).findElements(By.tagName(Attributes.TABLE_ROW.getValue())).size() - 1;
+        return pageHelper.findElementById(getStringProperty(USER_TABLE_PROPERTY)).findElements(By.tagName(Attributes.TABLE_ROW.getValue())).size() - 1;
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/modal-dialog.php"})
-    void createUserModal(String url) {
+    @MethodSource("com.sii.sup.helper.DataSources#menuTestDataSource")
+    void createUserModal(String url, String name, String email, String password) {
+        userToCreate = new User(name, email, password);
+        logger.info(String.format("Test will create user:%s", userToCreate));
         int initNoOfUsers = initializeTestData(url);
         logger.info("Initial no of users : " + initNoOfUsers);
         inputDataToModal();
         sendFormAndWaitForUserToAppear(initNoOfUsers);
-        List<WebElement> tableRows = webDriver.
-                findElement(By.id(properties.getProperty(USER_TABLE_PROPERTY))).
+        List<WebElement> tableRows = pageHelper.getWebDriver().
+                findElement(By.id(getStringProperty(USER_TABLE_PROPERTY))).
                 findElements(By.tagName(Attributes.TABLE_ROW.getValue()));
         List<User> users = new ArrayList<>();
         logger.info("------------------------------Users------------------------------");
@@ -80,47 +72,46 @@ class MenuTest extends TestBase {
         }
         logger.info("------------------------------End------------------------------");
         logger.info(String.format("Created user %s", userToCreate));
+        users.forEach(System.out::println);
         assertThat(users).as(String.format("Created user %s didn't appeared in table", userToCreate)).anyMatch(userToCreate::equals);
 
     }
 
     private int initializeTestData(String url) {
         initProperties();
-        initModalTestData();
-        webDriver.get(url);
-
-        return   getNoOfUsersFromUserTable();
+        pageHelper.init(url);
+        return getNoOfUsersFromUserTable();
     }
 
     private void sendFormAndWaitForUserToAppear(int initNoOfUsers) {
-        List<WebElement> buttonElements = webDriver.findElements(By.cssSelector(properties.getProperty(BUTTON_CSS_SELECTOR_PROPERTY)));
-        WebElement sendFormButton = buttonElements.stream().filter(el -> el.getText().equals(properties.getProperty(CREATE_USER_BUTTON_TEXT_PROPERTY))).toList().get(0);
+        List<WebElement> buttonElements = pageHelper.getWebDriver().findElements(By.cssSelector(getStringProperty(BUTTON_CSS_SELECTOR_PROPERTY)));
+        WebElement sendFormButton = buttonElements.stream().filter(el -> el.getText().equals(getStringProperty(CREATE_USER_BUTTON_TEXT_PROPERTY))).toList().get(0);
         logger.info(String.format("Clicking on %s button to send form", sendFormButton.getText().toLowerCase()));
         sendFormButton.click();
-        WebDriverWait waitForModal = new WebDriverWait(webDriver, Duration.ofSeconds(20));
+        WebDriverWait waitForModal = new WebDriverWait(pageHelper.getWebDriver(), Duration.ofSeconds(20));
         logger.info(String.format("Wait until user %s will be created", userToCreate));
         waitForModal.until((ExpectedCondition<Boolean>) driver -> {
-            int currentNoOfUsers = webDriver.findElement(By.id(properties.getProperty(USER_TABLE_PROPERTY))).findElements(By.tagName(Attributes.TABLE_ROW.getValue())).size();
+            int currentNoOfUsers = pageHelper.getWebDriver().findElement(By.id(getStringProperty(USER_TABLE_PROPERTY))).findElements(By.tagName(Attributes.TABLE_ROW.getValue())).size();
             return currentNoOfUsers > initNoOfUsers; // Return true if a new row has been added to the table
         });
     }
 
     private void inputDataToModal() {
-        WebElement createUserWebElement = webDriver.findElement(By.id(properties.getProperty(CREATE_USER_PROPERTY)));
+        WebElement createUserWebElement = pageHelper.findElementById(getStringProperty(CREATE_USER_PROPERTY));
         logger.info(String.format("Clicking on %s button to open modal dialog", createUserWebElement.getText().toLowerCase()));
         createUserWebElement.click();
-        WebDriverWait modalWait = new WebDriverWait(webDriver, Duration.ofSeconds(20));
+        WebDriverWait modalWait = new WebDriverWait(pageHelper.getWebDriver(), Duration.ofSeconds(20));
         logger.info("Wait for modal window");
-        modalWait.until(ExpectedConditions.visibilityOfElementLocated(By.id(properties.getProperty(NAME_PROPERTY))));
+        modalWait.until(ExpectedConditions.visibilityOfElementLocated(By.id(getStringProperty(NAME_PROPERTY))));
         logger.info(String.format("Fill form with user data: %s", userToCreate));
-        webDriver.findElement(By.id("dialog-form")).findElements(By.tagName(Attributes.INPUT.getValue())).forEach(el -> {
+        pageHelper.findElementById("dialog-form").findElements(By.tagName(Attributes.INPUT.getValue())).forEach(el -> {
             if (!el.getAttribute(Attributes.TYPE.getValue()).equals("submit")) {
                 el.clear();
             }
         });
-        webDriver.findElement(By.id(properties.getProperty(NAME_PROPERTY))).sendKeys(name);
-        webDriver.findElement(By.id(properties.getProperty(EMAIL_PROPERTY))).sendKeys(email);
-        webDriver.findElement(By.id(properties.getProperty(PASSWORD_PROPERTY))).sendKeys(password);
+        pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(NAME_PROPERTY)), userToCreate.name);
+        pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(EMAIL_PROPERTY)), userToCreate.email);
+        pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(PASSWORD_PROPERTY)), userToCreate.password);
     }
 
     static class User {

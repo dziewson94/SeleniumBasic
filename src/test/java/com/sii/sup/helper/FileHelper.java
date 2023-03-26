@@ -18,8 +18,9 @@ import java.util.Objects;
 import java.util.Properties;
 
 
-class FileHelper {
+public class FileHelper {
     protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class);
+    public static final String TEST_FILE_TO_DOWNLOAD_XLSX = "test-file-to-download.xlsx";
 
     private FileHelper() {
     }
@@ -65,19 +66,48 @@ class FileHelper {
     }
 
     static void deleteTestFile() {
-        File file = new File(getDownloadDirPath() + File.separator + "test-file-to-download.xlsx");
+        File file = new File(getDownloadDirPath() + File.separator + TEST_FILE_TO_DOWNLOAD_XLSX);
         if (file.exists()) {
             logger.info("Is test file removed:" + file.delete());
         }
     }
 
     static boolean testFileExist() {
-        return new File(getDownloadDirPath() + File.separator + "test-file-to-download.xlsx").exists();
+        return new File(getDownloadDirPath() + File.separator + TEST_FILE_TO_DOWNLOAD_XLSX).exists();
 
     }
 
     static List<String> getDownloadDirFilesNames() {
         return Arrays.stream(Objects.requireNonNull(new File(getDownloadDirPath()).listFiles())).map(File::getName).toList();
     }
+
+    static Properties readTableProperties() {
+        return readProperties("table/table.properties");
+    }
+
+    static Properties readWindowProperties() {
+        return readProperties("window/window.properties");
+    }
+
+    static Properties readFormProperties() {
+        return readProperties("form/form.properties");
+    }
+
+    public static Properties readIframeProperties() {
+        return readProperties("iframe/iframe.properties");
+    }
+
+    static Properties readMenuProperties() {
+        return readProperties("menu/menu.properties");
+    }
+
+    static Properties readAccordionProperties() {
+        return readProperties("accordion/accordion.properties");
+    }
+
+    static Properties readAlertProperties() {
+        return FileHelper.readProperties("alert/alert.properties");
+    }
+
 
 }

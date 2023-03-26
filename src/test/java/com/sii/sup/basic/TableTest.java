@@ -1,9 +1,10 @@
 package com.sii.sup.basic;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.staticvalues.StaticValues;
-import com.sii.sup.helper.Helper;
+import com.sii.sup.helper.PropertyHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -11,20 +12,17 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.StringJoiner;
 
+import static com.sii.sup.staticvalues.StaticValues.TableTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TableTest extends TestBase {
-    private Properties properties;
+    private final Logger logger = new LoggerContext().getLogger(TableTest.class);
 
-    public TableTest() {
-        super();
-    }
 
     private void initProperties() {
-        properties = Helper.readTableProperties();
+        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
         logger.info("Table test properties loaded");
     }
 
@@ -32,8 +30,8 @@ class TableTest extends TestBase {
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/table.php"})
     void tableTest(String url) {
         initProperties();
-        webDriver.get(url);
-        WebElement tableWebElement = webDriver.findElement(By.className(properties.getProperty(StaticValues.TableTest.TABLE_PROPERTY)));
+        pageHelper.init(url);
+        WebElement tableWebElement = pageHelper.getWebDriver().findElement(By.className(getStringProperty(TABLE_PROPERTY)));
         WebElement tbodyWebElement = tableWebElement.findElement(By.tagName(Attributes.TBODY.getValue()));
         List<WebElement> rows = tbodyWebElement.findElements(By.tagName(Attributes.TABLE_ROW.getValue()));
         List<Mountain> mountains = new ArrayList<>();
@@ -50,12 +48,11 @@ class TableTest extends TestBase {
             mountains.add(mountain);
         }
         List<Mountain> filteredList = mountains.stream().filter(mountain ->
-                mountain.state.equals(properties.getProperty(StaticValues.TableTest.STATE_PROPERTY)) &&
+                mountain.state.equals(getStringProperty(STATE_PROPERTY)) &&
                         (Integer.parseInt(mountain.height) >
-                                Integer.parseInt(properties.getProperty(StaticValues.TableTest.MIN_HEIGHT_PROPERTY)))
+                                getIntProperty(MIN_HEIGHT_PROPERTY))
         ).toList();
-        filteredList.forEach(mt -> logger.info(mt.toString()));
-        assertThat(filteredList).hasSize(Integer.parseInt(properties.getProperty(StaticValues.TableTest.EXPECTED_RESULT_RECORDS_PROPERTY)));
+        assertThat(filteredList).hasSize(Integer.parseInt(getStringProperty(EXPECTED_RESULT_RECORDS_PROPERTY)));
     }
 
     private static class Mountain {
