@@ -1,0 +1,16 @@
+221 [ForkJoinPool-1-worker-1] INFO  TestBase - Web driver manager initialization
+515 [ForkJoinPool-1-worker-1] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 111.0.5563.64 (resolved driver for Chrome 111)
+531 [ForkJoinPool-1-worker-1] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\mdziewa\.cache\selenium\chromedriver\win32\111.0.5563.64\chromedriver.exe
+562 [ForkJoinPool-1-worker-1] INFO  TestBase - Initializing chrome webdriver
+569 [ForkJoinPool-1-worker-1] INFO  TestBase - Adding options:
+--remote-allow-origins=*
+download.prompt_for_download:false
+download.default_directory:C:\Users\mdziewa\IdeaProjects\SeleniumBasic\target
+1824 [ForkJoinPool-1-worker-1] INFO  PropertyHelper - Initializing properties configuration for Slider
+2467 [ForkJoinPool-1-worker-1] INFO  PropertyHelper - Loading property slider.id
+2468 [ForkJoinPool-1-worker-1] INFO  PropertyHelper - Return value property custom-handle
+2488 [ForkJoinPool-1-worker-1] INFO  Slider - button location 204
+2498 [ForkJoinPool-1-worker-1] INFO  Slider - One step in slider progress in pixels is equal to:11
+8791 [ForkJoinPool-1-worker-1] INFO  PropertyHelper - Loading property slider.id
+8791 [ForkJoinPool-1-worker-1] INFO  PropertyHelper - Return value property custom-handle
+9268 [ForkJoinPool-1-worker-1] INFO  Slider - button location 769

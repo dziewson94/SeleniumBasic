@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LogSupport">
+    <option name="logConfigurations">
+      <ProjectLogConfigurations>
+        <option name="defaultLogConfiguration">
+          <DefaultLogConfiguration>
+            <option name="defaultFrameworkName" value="slf4j" />
+            <option name="logIdLevels">
+              <set>
+                <option value="info" />
+              </set>
+            </option>
+            <option name="logIdName" value="Default" />
+          </DefaultLogConfiguration>
+        </option>
+        <option name="targetedLogConfigurations">
+          <list>
+            <TargetedLogConfiguration>
+              <option name="defaultFrameworkName" value="slf4j" />
+              <option name="logIdLevels">
+                <set>
+                  <option value="info" />
+                </set>
+              </option>
+              <option name="logIdName" value="Default" />
+              <option name="targetScopeName" value="Project Files" />
+            </TargetedLogConfiguration>
+          </list>
+        </option>
+      </ProjectLogConfigurations>
+    </option>
+  </component>
+</project>
