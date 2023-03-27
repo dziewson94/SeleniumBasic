@@ -1,5 +1,3 @@
 
-S
-#src/main/java/com/sii/sup/Main.java,0\1\01615125453da252e6378116fcc95e4cf69e7d72
 ^
 .src/test/java/com/sii/sup/base/Attributes.java,1\b\1bc440dcdd518af1aeceb1d44f8467e803e37569

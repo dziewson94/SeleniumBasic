@@ -74,12 +74,12 @@ public class StaticValues {
     }
 
     public static class AccordionTest {
-        public static final String ACCORDION_DIV_PROPERTY = "ACCORDION_DIV";
-        public static final String ACCORDION_TEXT1_PROPERTY = "ACCORDION_TEXT1";
-        public static final String ACCORDION_TEXT2_PROPERTY = "ACCORDION_TEXT2";
-        public static final String ACCORDION_TEXT3_PROPERTY = "ACCORDION_TEXT3";
-        public static final String ACCORDION_TEXT4_PROPERTY = "ACCORDION_TEXT4";
-        public static final String ACCORDION_SECTIONS_PROPERTY = "ACCORDION_SECTIONS";
+        public static final String ACCORDION_DIV_PROPERTY = "testparam.accordiondiv.id";
+        public static final String ACCORDION_TEXT1_PROPERTY = "testveryfication.section1text";
+        public static final String ACCORDION_TEXT2_PROPERTY = "testveryfication.section2text";
+        public static final String ACCORDION_TEXT3_PROPERTY = "testveryfication.section3text";
+        public static final String ACCORDION_TEXT4_PROPERTY = "testveryfication.section4text";
+        public static final String ACCORDION_SECTIONS_PROPERTY = "testveryfication.noofsections";
 
 
     }

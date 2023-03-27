@@ -1,87 +1,86 @@
 package com.sii.sup.basic;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.staticvalues.StaticValues;
-import com.sii.sup.helper.Helper;
+import com.sii.sup.helper.PropertyHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.Properties;
 import java.util.Set;
 
 import static com.sii.sup.staticvalues.StaticValues.WindowTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WindowTest extends TestBase {
-    private Properties properties;
-
-    private static String getNewWindowHandle(String currentWindowHandle, Set<String> allWindowHandles) {
-        return allWindowHandles.stream().filter(handle -> (!handle.equals(currentWindowHandle))).findFirst().orElse("");
-    }
+    private final Logger logger = new LoggerContext().getLogger(WindowTest.class);
 
     private void initProperties() {
-        properties = Helper.readWindowProperties();
+        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
         logger.info("Window test properties loaded");
     }
-
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/windows-tabs.php"})
-    void windowTest(String url) {
+    public void testNewBrowserTab(String url) {
         initProperties();
-        webDriver.get(url);
-        String mainWindowHandle = webDriver.getWindowHandle();
-        testNewBrowserWindow(mainWindowHandle);
-        testNewMessageWindow(mainWindowHandle);
-        testNewBrowserTab(mainWindowHandle);
-    }
-
-    private void testNewBrowserTab(String mainWindowHandle) {
-        WebElement newBrowserTab = webDriver.findElement(By.id(properties.getProperty(NEW_BROWSER_TAB_PROPERTY)));
-        logger.info("Click on " + properties.getProperty(NEW_BROWSER_TAB_PROPERTY));
+        pageHelper.init(url);
+        String mainWindowHandle = pageHelper.getWebDriver().getWindowHandle();
+        WebElement newBrowserTab = pageHelper.findElementById(getStringProperty(NEW_BROWSER_TAB_PROPERTY));
+        logger.info("Click on " + getStringProperty(NEW_BROWSER_TAB_PROPERTY));
         newBrowserTab.click();
-        Set<String> allWindowHandles = webDriver.getWindowHandles();
-        String newBrowserTabHandle = getNewWindowHandle(mainWindowHandle, allWindowHandles);
+        Set<String> allWindowHandles = pageHelper.getWebDriver().getWindowHandles();
+        String newBrowserTabHandle = pageHelper.getNewstWindowHandle(mainWindowHandle, allWindowHandles);
         logger.info("Switching to " + newBrowserTabHandle);
-        webDriver.switchTo().window(newBrowserTabHandle);
+        pageHelper.getWebDriver().switchTo().window(newBrowserTabHandle);
         TableTest tableTest = new TableTest();
         tableTest.setup();
-        tableTest.tableTest(webDriver.getCurrentUrl());
+        tableTest.tableTest(pageHelper.getWebDriver().getCurrentUrl());
     }
-
-    private void testNewMessageWindow(String mainWindowHandle) {
-        WebElement newMessageWindow = webDriver.findElement(By.id(properties.getProperty(NEW_MESSAGE_WINDOW_PROPERTY)));
-        logger.info("Click on " + properties.getProperty(NEW_MESSAGE_WINDOW_PROPERTY));
+    @ParameterizedTest
+    @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/windows-tabs.php"})
+    public void testNewMessageWindow(String url) {
+        initProperties();
+        pageHelper.init(url);
+        String mainWindowHandle = pageHelper.getWebDriver().getWindowHandle();
+        WebElement newMessageWindow = pageHelper.findElementById(getStringProperty(NEW_MESSAGE_WINDOW_PROPERTY));
+        logger.info("Click on " + getStringProperty(NEW_MESSAGE_WINDOW_PROPERTY));
         newMessageWindow.click();
-        Set<String> allWindowHandles = webDriver.getWindowHandles();
-        String newMessageWindowHandle = getNewWindowHandle(mainWindowHandle, allWindowHandles);
+        Set<String> allWindowHandles = pageHelper.getWebDriver().getWindowHandles();
+        String newMessageWindowHandle = pageHelper.getNewstWindowHandle(mainWindowHandle, allWindowHandles);
         logger.info("Switching to " + newMessageWindowHandle);
-        webDriver.switchTo().window(newMessageWindowHandle);
-        WebElement body = webDriver.findElement(By.tagName(Attributes.BODY.getValue()));
-        logger.info("Text from body" + body.getText());
-        assertThat(body.getText()).isEqualTo(
-                properties.getProperty(StaticValues.WindowTest.NEW_MESSAGE_WINDOW_CONTENT_PROPERTY));
-        webDriver.close();
-        webDriver.switchTo().window(mainWindowHandle);
-    }
+        pageHelper.getWebDriver().switchTo().window(newMessageWindowHandle);
+        WebElement body = pageHelper.getWebDriver().findElement(By.tagName(Attributes.BODY.getValue()));
+        String bodyOutput = body.getText();
+        logger.info("Text from body" + bodyOutput);
+        pageHelper.getWebDriver().close();
+        pageHelper.getWebDriver().switchTo().window(mainWindowHandle);
+        assertThat(bodyOutput).isEqualTo(
+                getStringProperty(NEW_MESSAGE_WINDOW_CONTENT_PROPERTY));
 
-    private void testNewBrowserWindow(String mainWindowHandle) {
-        WebElement newBrowserButton = webDriver.findElement(By.id(properties.getProperty(NEW_BROWSER_WINDOW_PROPERTY)));
-        logger.info("Click on " + properties.getProperty(NEW_BROWSER_WINDOW_PROPERTY));
+    }
+    @ParameterizedTest
+    @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/windows-tabs.php"})
+    public void testNewBrowserWindow(String url) {
+        initProperties();
+        pageHelper.init(url);
+        String mainWindowHandle = pageHelper.getWebDriver().getWindowHandle();
+        WebElement newBrowserButton = pageHelper.findElementById(getStringProperty(NEW_BROWSER_WINDOW_PROPERTY));
+        logger.info("Click on " + getStringProperty(NEW_BROWSER_WINDOW_PROPERTY));
         newBrowserButton.click();
         logger.info("Current window handle " + mainWindowHandle);
-        Set<String> allWindowHandles = webDriver.getWindowHandles();
-        String newWindowHandle = getNewWindowHandle(mainWindowHandle, allWindowHandles);
+        Set<String> allWindowHandles = pageHelper.getWebDriver().getWindowHandles();
+        String newWindowHandle = pageHelper.getNewstWindowHandle(mainWindowHandle, allWindowHandles);
         logger.info("Switching to " + newWindowHandle);
-        webDriver.switchTo().window(newWindowHandle);
+        pageHelper.getWebDriver().switchTo().window(newWindowHandle);
         TableTest innerTableTest = new TableTest();
         innerTableTest.setup();
-        innerTableTest.tableTest(webDriver.getCurrentUrl());
+        innerTableTest.tableTest(pageHelper.getWebDriver().getCurrentUrl());
         logger.info("Switching to " + mainWindowHandle);
-        webDriver.close();
-        webDriver.switchTo().window(mainWindowHandle);
+        pageHelper.getWebDriver().close();
+        pageHelper.getWebDriver().switchTo().window(mainWindowHandle);
 
     }
 

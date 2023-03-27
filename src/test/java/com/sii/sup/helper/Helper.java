@@ -44,37 +44,11 @@ public class Helper {
         return FileHelper.getDownloadDirFilesNames();
     }
 
-    public static Properties readTableProperties() {
-        return FileHelper.readProperties("table/table.properties");
-    }
-
-    public static Properties readWindowProperties() {
-        return FileHelper.readProperties("window/window.properties");
-    }
-
-    public static Properties readFormProperties() {
-        return FileHelper.readProperties("form/form.properties");
-    }
-
-    public static Properties readIframeProperties() {
-        return FileHelper.readProperties("iframe/iframe.properties");
-    }
-
-    public static Properties readMenuProperties() {
-        return FileHelper.readProperties("menu/menu.properties");
-    }
-
     public static WebElement findWebElementById(List<WebElement> elements, String id) {
         return elements.stream().filter(el -> el.getAttribute("id").equals(id)).findFirst().orElse(elements.get(0));
     }
-    public static Properties readAccordionProperties() {
-        return FileHelper.readProperties("accordion/accordion.properties");
-    }
 
 
-    public static Properties readAlertProperties() {
-        return FileHelper.readProperties("alert/alert.properties");
-    }
 
     public static String generateRandomString(int length) {
         StringBuilder sb = new StringBuilder(length);
