@@ -46,6 +46,7 @@ public class TestBase {
         prefs.put(DOWNLOAD_DEFAULT_DIRECTORY, Helper.getDownloadDirPath());
         options.setExperimentalOption(PREFS, prefs);
         webDriver = new ChromeDriver(options);
+        webDriver.manage().window().maximize();
         pageHelper = new PageHelper(webDriver);
     }
 

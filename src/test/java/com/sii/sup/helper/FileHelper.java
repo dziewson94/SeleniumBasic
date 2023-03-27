@@ -88,6 +88,27 @@ public class FileHelper {
     static Properties readWindowProperties() {
         return readProperties("window/window.properties");
     }
+    static Properties readDatepickerProperties() {
+        return readProperties("datepicker/datepicker.properties");
+    }
+    static Properties readAutocompleteProperties() {
+        return readProperties("autocomplete/autocomplete.properties");
+    }
+    static Properties readSliderProperties() {
+        return readProperties("slider/slider.properties");
+    }
+
+    static Properties readTooltipProperties() {
+        return readProperties("tooltip/tooltip.properties");
+    }
+    static Properties readSelectableProperties() {
+        return readProperties("selectable/selectable.properties");
+    }
+
+
+    static Properties readProgressbarProperties() {
+        return readProperties("progressbar/progressbar.properties");
+    }
 
     static Properties readFormProperties() {
         return readProperties("form/form.properties");

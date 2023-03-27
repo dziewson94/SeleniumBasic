@@ -69,7 +69,7 @@ class FormTest extends TestBase {
         pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(LAST_NAME_PROPERTY)), lastName);
         pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(EMAIL_PROPERTY)), email);
         pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(AGE_PROPERTY)), String.valueOf(age));
-        pageHelper.setInputValue(pageHelper.findElementById(getStringProperty(FILE_SELECT_PROPERTY)), fileToUpload.getAbsolutePath());
+        pageHelper.setFileInputValue(pageHelper.findElementById(getStringProperty(FILE_SELECT_PROPERTY)), fileToUpload.getAbsolutePath());
 
     }
 

@@ -20,7 +20,7 @@ import static com.sii.sup.staticvalues.StaticValues.Autocomplete.SEARCH_PROPERTY
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Autocomplete extends TestBase {
-    private static Logger logger = LoggerFactory.getLogger(AccordionTest.class.getSimpleName());
+    private static Logger logger = LoggerFactory.getLogger(Autocomplete.class);
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/autocomplete.php"})

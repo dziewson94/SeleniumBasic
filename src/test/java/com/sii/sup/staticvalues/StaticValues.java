@@ -83,4 +83,53 @@ public class StaticValues {
 
 
     }
+
+
+    public static class DataPicker {
+        public static final String DATE_PICKER_ID_PROPERTY = "date-picker.id";
+        public static final String TABLE_PROPERTY = "tableXpath";
+        public static final String NEXT_PROPERTY = "nextButton";
+        public static final String PREV_PROPERTY = "prevButton";
+
+
+    }
+
+    public static class Autocomplete {
+        public static final String SEARCH_PROPERTY = "search.id";
+
+    }
+
+    public static class Slider {
+        public static final String SLIDER_PROPERTY = "slider.id";
+
+    }
+
+    public static class Progressbar {
+        public static final String PROGRESSBAR_ID_PROPERTY = "progressbar.id";
+        public static final String PROGRESSBAR_LABEL_PROPERTY = "progressbar-label";
+        public static final String PROGRESSBAR_LABEL_COMPLETE__PROPERTY = "progressbar-label.complete";
+        public static final String PROGRESSBAR_CLASS_COMPLETE__PROPERTY = "progressbar.class.complete";
+        public static final String PROGRESSBAR_DIV_LABEL_COMPLETE__PROPERTY = "progressbar.div.label";
+
+
+    }
+
+    public static class Selectable {
+        public static final String SELECTABLE_SPEED_PROPERTY = "selectable.speed";
+        public static final String SELECTABLE_FILES__PROPERTY = "selectable.files";
+        public static final String SELECTABLE_NUMBER_PROPERTY = "selectable.number";
+        public static final String SELECTABLE_SALUTATION_PROPERTY = "selectable.salutation";
+        public static final String SELECTABLE_NUM_INDEX_PROPERTY = "selectable.num.index";
+
+        public static final String SELECTABLE_FILENAME_PROPERTY = "selectable.filename";
+
+    }
+
+    public static class Tooltip {
+        public static final String TOOLTIP_PROPERTY = "tooltip.id";
+        public static final String TOOLTIP_SUCCESS_PROPERTY = "tooltip.sucess";
+
+        public static final String TOOLTIP_MESSAGE_CLASS_PROPERTY="tooltip.message.class";
+
+    }
 }

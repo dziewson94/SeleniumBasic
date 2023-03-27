@@ -54,7 +54,11 @@ public class PageHelper {
         element.clear();
         element.sendKeys(value);
     }
-
+    public void setFileInputValue(WebElement element, String value) {
+        logger.info(String.format("Setting input form:%s with value %s", element.getAttribute(Attributes.ID.getValue()), value));
+        element.clear();
+        element.sendKeys(value);
+    }
     public WebDriverWait waitUntilSeconds(int seconds){
         return new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
     }

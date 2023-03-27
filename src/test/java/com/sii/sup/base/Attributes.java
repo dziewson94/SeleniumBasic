@@ -10,7 +10,9 @@ public enum Attributes {
     TABLE_HEADER("th"),
     BODY("body"),
     TYPE("type"),
-    H3("h3");
+    H3("h3"),
+    CLASS("class"),
+    LI("li");
 
     private final String value;
 
