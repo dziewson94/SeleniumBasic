@@ -14,17 +14,15 @@ public class TestHelper {
     private static final Logger logger = LoggerFactory.getLogger(TestHelper.class.getSimpleName());
 
 
-
-
-
     public static PageHelper getPageHelper(WebDriver webDriver) {
         return new PageHelper(webDriver);
     }
 
 
     public static List<String> getNamesList() {
-        return FileHelper.readFileToList("form/data/names.txt");
+        return FileHelper.readFileToList("tests/basic/form/data/names.txt");
     }
+
     private static PropertyHelper initializeProperties(String className) {
         Properties allProperties = new Properties();
         switch (className) {
@@ -39,13 +37,15 @@ public class TestHelper {
             case ("AutocompleteTest") -> allProperties = readAutocompleteProperties();
             case ("SliderTest") -> allProperties = readSliderProperties();
             case ("ProgressBarTest") -> allProperties = readProgressbarProperties();
-            case ("SelectableTest") -> allProperties = readSelectableProperties();
+            case ("SelectMenuTest") -> allProperties = readSelectMenuProperties();
             case ("TooltipTest") -> allProperties = readTooltipProperties();
             case ("DraggableTest") -> allProperties = readDraggableProperties();
             case ("DroppableTest") -> allProperties = readDroppableProperties();
-            case ("ResizableTest") ->allProperties= readResizableProperties();
-            case ("SelectableInteractionsTest") -> allProperties = readSelectableInteractionsProperties();
+            case ("ResizableTest") -> allProperties = readResizableProperties();
+            case ("SelectableTest") -> allProperties = readSelectableProperties();
             case ("SortableTest") -> allProperties = readSortableProperties();
+            case ("HighSiteTest") -> allProperties = readHighsiteProperties();
+            case ("DemoQaTest") -> allProperties = readDemoQaProperties();
         }
         logger.debug("Initializing properties configuration for " + className);
 
@@ -54,15 +54,23 @@ public class TestHelper {
     }
 
     private static Properties readSortableProperties() {
-        return FileHelper.readProperties("sortable/sortable.properties");
+        return FileHelper.readProperties("tests/interaction/sortable/sortable.properties");
+    }
+
+    private static Properties readHighsiteProperties() {
+        return FileHelper.readProperties("tests/other/highsite/highsite.properties");
+    }
+
+    private static Properties readDemoQaProperties() {
+        return FileHelper.readProperties("tests/other/demoQa/demoQa.properties");
     }
 
     public static List<String> getLastNames() {
-        return FileHelper.readFileToList("form/data/lastnames.txt");
+        return FileHelper.readFileToList("tests/basic/form/data/lastnames.txt");
     }
 
     public static List<String> getEmails() {
-        return FileHelper.readFileToList("form/data/emails.txt");
+        return FileHelper.readFileToList("tests/basic/form/data/emails.txt");
     }
 
     public static Object getRandomListElement(List<?> list) {
@@ -84,6 +92,7 @@ public class TestHelper {
     public static boolean isTestFileExist() {
         return FileHelper.testFileExist();
     }
+
     public static PropertyHelper getPropertyHelper(String className) {
         return initializeProperties(className);
     }
@@ -99,69 +108,70 @@ public class TestHelper {
     }
 
     private static Properties readTableProperties() {
-        return FileHelper.readProperties("table/table.properties");
+        return FileHelper.readProperties("tests/basic/table/table.properties");
     }
 
     private static Properties readWindowProperties() {
-        return FileHelper.readProperties("window/window.properties");
+        return FileHelper.readProperties("tests/basic/window/window.properties");
     }
 
     private static Properties readDatepickerProperties() {
-        return FileHelper.readProperties("datepicker/datepicker.properties");
+        return FileHelper.readProperties("tests/widget/datepicker/datepicker.properties");
     }
 
     private static Properties readAutocompleteProperties() {
-        return FileHelper.readProperties("autocomplete/autocomplete.properties");
+        return FileHelper.readProperties("tests/widget/autocomplete/autocomplete.properties");
     }
 
     private static Properties readResizableProperties() {
-        return FileHelper.readProperties("resizable/resizable.properties");
-    }
-
-    private static Properties readSelectableInteractionsProperties() {
-        return FileHelper.readProperties("selectable_interactions/selectable.properties");
-    }
-    private static Properties readDraggableProperties() {
-        return FileHelper.readProperties("draggable/draggable.properties");
-    }
-
-    private static Properties readDroppableProperties() {
-        return FileHelper.readProperties("droppable/droppable.properties");
-    }
-
-    private static Properties readSliderProperties() {
-        return FileHelper.readProperties("slider/slider.properties");
-    }
-
-    private static Properties readTooltipProperties() {
-        return FileHelper.readProperties("tooltip/tooltip.properties");
+        return FileHelper.readProperties("tests/interaction/resizable/resizable.properties");
     }
 
     private static Properties readSelectableProperties() {
-        return FileHelper.readProperties("selectable/selectable.properties");
+        return FileHelper.readProperties("tests/interaction/selectable/selectable.properties");
+    }
+
+    private static Properties readDraggableProperties() {
+        return FileHelper.readProperties("tests/interaction/draggable/draggable.properties");
+    }
+
+    private static Properties readDroppableProperties() {
+        return FileHelper.readProperties("tests/interaction/droppable/droppable.properties");
+    }
+
+    private static Properties readSliderProperties() {
+        return FileHelper.readProperties("tests/widget/slider/slider.properties");
+    }
+
+    private static Properties readTooltipProperties() {
+        return FileHelper.readProperties("tests/widget/tooltip/tooltip.properties");
+    }
+
+    private static Properties readSelectMenuProperties() {
+        return FileHelper.readProperties("tests/widget/selectmenu/selectmenu.properties");
     }
 
     private static Properties readProgressbarProperties() {
-        return FileHelper.readProperties("progressbar/progressbar.properties");
+        return FileHelper.readProperties("tests/widget/progressbar/progressbar.properties");
     }
 
     private static Properties readFormProperties() {
-        return FileHelper.readProperties("form/form.properties");
+        return FileHelper.readProperties("tests/basic/form/form.properties");
     }
 
     private static Properties readIframeProperties() {
-        return FileHelper.readProperties("iframe/iframe.properties");
+        return FileHelper.readProperties("tests/basic/iframe/iframe.properties");
     }
 
     private static Properties readMenuProperties() {
-        return FileHelper.readProperties("menu/menu.properties");
+        return FileHelper.readProperties("tests/widget/menu/menu.properties");
     }
 
     private static Properties readAccordionProperties() {
-        return FileHelper.readProperties("accordion/accordion.properties");
+        return FileHelper.readProperties("tests/widget/accordion/accordion.properties");
     }
 
     private static Properties readAlertProperties() {
-        return FileHelper.readProperties("alert/alert.properties");
+        return FileHelper.readProperties("tests/basic/alert/alert.properties");
     }
 }

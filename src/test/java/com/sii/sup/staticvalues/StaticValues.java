@@ -99,7 +99,9 @@ public class StaticValues {
     }
 
     public static class Slider {
+        public static final String SLIDER_BUTTON_PROPERTY = "slider.button.id";
         public static final String SLIDER_PROPERTY = "slider.id";
+
 
     }
 
@@ -150,6 +152,15 @@ public class StaticValues {
     }
 
     public static class Sortable {
+        public static final String SORTABLE_PROPERTY="sortable.id";
+    }
+
+
+    public static class HighSite {
+        public static final String SORTABLE_PROPERTY="sortable.id";
+    }
+
+    public static class DemoQa {
         public static final String SORTABLE_PROPERTY="sortable.id";
     }
 }

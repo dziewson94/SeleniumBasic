@@ -48,7 +48,7 @@ public class FileHelper {
         String content = TestHelper.generateRandomString(20000);
         File file = new File("");
         try {
-            URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("form");
+            URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("tests/basic/form");
             Path filePath = Paths.get(Objects.requireNonNull(formResourcesUrl).toURI()).resolve("temp.txt");
             file = filePath.toFile();
             FileWriter writer = new FileWriter(file);

@@ -1,6 +1,6 @@
 package com.sii.sup.helper;
 
-import com.sii.sup.base.Attributes;
+import com.sii.sup.tests.base.Attributes;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -1,10 +1,13 @@
 package com.sii.sup.helper;
 
-import com.sii.sup.interactions.Direction;
+import com.sii.sup.tests.interactions.Direction;
 import org.apache.commons.compress.utils.Lists;
 import org.junit.jupiter.params.provider.Arguments;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
