@@ -148,4 +148,8 @@ public class StaticValues {
     public static class SelectableInteractions {
         public static final String SELECTABLE_PROPERTY="selectable.id";
     }
+
+    public static class Sortable {
+        public static final String SORTABLE_PROPERTY="sortable.id";
+    }
 }

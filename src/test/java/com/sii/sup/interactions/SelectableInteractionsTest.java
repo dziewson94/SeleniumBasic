@@ -1,5 +1,6 @@
 package com.sii.sup.interactions;
 
+import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +29,7 @@ class SelectableInteractionsTest extends TestBase {
         pageHelper.init(url);
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         WebElement selectableList = pageHelper.findElementById(getStringProperty(SELECTABLE_PROPERTY));
-        List<WebElement> listElements = selectableList.findElements(By.tagName("li"));
+        List<WebElement> listElements = selectableList.findElements(By.tagName(Attributes.LI.getValue()));
         listElements.stream().map(WebElement::getText).toList().forEach(logger::info);
         Actions action = new Actions(pageHelper.getWebDriver());
         action.keyDown(Keys.LEFT_CONTROL).perform();

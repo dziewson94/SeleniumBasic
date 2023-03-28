@@ -1,13 +1,12 @@
 package com.sii.sup.helper;
 
 import com.sii.sup.interactions.Direction;
+import org.apache.commons.compress.utils.Lists;
 import org.junit.jupiter.params.provider.Arguments;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class DataSources {
@@ -34,6 +33,14 @@ public class DataSources {
                 Arguments.of("http://www.seleniumui.moderntester.pl/selectable.php",
                         new int[]
                                 {1, 3, 4}
+                )
+        );
+    }
+
+    public static Stream<Arguments> sortableTestDataSource() {
+        return Stream.of(
+                Arguments.of("http://www.seleniumui.moderntester.pl/sortable.php",
+                        Lists.newArrayList(IntStream.range(1,8).iterator())
                 )
         );
     }

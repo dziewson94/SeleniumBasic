@@ -45,11 +45,16 @@ public class TestHelper {
             case ("DroppableTest") -> allProperties = readDroppableProperties();
             case ("ResizableTest") ->allProperties= readResizableProperties();
             case ("SelectableInteractionsTest") -> allProperties = readSelectableInteractionsProperties();
+            case ("SortableTest") -> allProperties = readSortableProperties();
         }
         logger.debug("Initializing properties configuration for " + className);
 
         return new PropertyHelper(allProperties);
 
+    }
+
+    private static Properties readSortableProperties() {
+        return FileHelper.readProperties("sortable/sortable.properties");
     }
 
     public static List<String> getLastNames() {
