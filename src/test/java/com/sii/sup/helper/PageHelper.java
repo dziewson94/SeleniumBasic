@@ -4,12 +4,9 @@ import com.sii.sup.base.Attributes;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -44,7 +41,7 @@ public class PageHelper {
                 findElements(By.tagName(tag));
     }
 
-    public String getNewstWindowHandle(String currentWindowHandle, Set<String> allWindowHandles) {
+    public String getNewestWindowHandle(String currentWindowHandle, Set<String> allWindowHandles) {
         return allWindowHandles.stream().filter(handle -> (!handle.equals(currentWindowHandle))).findFirst().orElse("");
     }
 
@@ -58,9 +55,6 @@ public class PageHelper {
         logger.info(String.format("Setting input form:%s with value %s", element.getAttribute(Attributes.ID.getValue()), value));
         element.clear();
         element.sendKeys(value);
-    }
-    public WebDriverWait waitUntilSeconds(int seconds){
-        return new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
     }
 
     public String getElementWithChildText(WebElement element) {

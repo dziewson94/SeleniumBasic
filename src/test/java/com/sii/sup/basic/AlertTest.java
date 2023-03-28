@@ -3,7 +3,6 @@ package com.sii.sup.basic;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.PropertyHelper;
 import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -13,13 +12,15 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
+
 import static com.sii.sup.staticvalues.StaticValues.AlertTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
 class AlertTest extends TestBase {
-    private final Logger logger = new LoggerContext().getLogger(AlertTest.class);
+    private final Logger logger = new LoggerContext().getLogger(AlertTest.class.getSimpleName());
 
     public void initProperties() {
         propertyHelper = TestHelper.getPropertyHelper(AlertTest.class.getSimpleName());

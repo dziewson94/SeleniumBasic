@@ -4,7 +4,6 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.PropertyHelper;
 import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,7 +18,7 @@ import static com.sii.sup.staticvalues.StaticValues.TableTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TableTest extends TestBase {
-    private final Logger logger = new LoggerContext().getLogger(TableTest.class);
+    private final Logger logger = new LoggerContext().getLogger(TableTest.class.getSimpleName());
 
 
     private void initProperties() {

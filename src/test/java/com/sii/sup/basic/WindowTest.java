@@ -4,7 +4,6 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.PropertyHelper;
 import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,7 +16,7 @@ import static com.sii.sup.staticvalues.StaticValues.WindowTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WindowTest extends TestBase {
-    private final Logger logger = new LoggerContext().getLogger(WindowTest.class);
+    private final Logger logger = new LoggerContext().getLogger(WindowTest.class.getSimpleName());
 
     private void initProperties() {
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
@@ -25,7 +24,7 @@ class WindowTest extends TestBase {
     }
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/windows-tabs.php"})
-    public void testNewBrowserTab(String url) {
+    void testNewBrowserTab(String url) {
         initProperties();
         pageHelper.init(url);
         String mainWindowHandle = pageHelper.getWebDriver().getWindowHandle();
@@ -33,7 +32,7 @@ class WindowTest extends TestBase {
         logger.info("Click on " + getStringProperty(NEW_BROWSER_TAB_PROPERTY));
         newBrowserTab.click();
         Set<String> allWindowHandles = pageHelper.getWebDriver().getWindowHandles();
-        String newBrowserTabHandle = pageHelper.getNewstWindowHandle(mainWindowHandle, allWindowHandles);
+        String newBrowserTabHandle = pageHelper.getNewestWindowHandle(mainWindowHandle, allWindowHandles);
         logger.info("Switching to " + newBrowserTabHandle);
         pageHelper.getWebDriver().switchTo().window(newBrowserTabHandle);
         TableTest tableTest = new TableTest();
@@ -42,7 +41,7 @@ class WindowTest extends TestBase {
     }
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/windows-tabs.php"})
-    public void testNewMessageWindow(String url) {
+    void testNewMessageWindow(String url) {
         initProperties();
         pageHelper.init(url);
         String mainWindowHandle = pageHelper.getWebDriver().getWindowHandle();
@@ -50,7 +49,7 @@ class WindowTest extends TestBase {
         logger.info("Click on " + getStringProperty(NEW_MESSAGE_WINDOW_PROPERTY));
         newMessageWindow.click();
         Set<String> allWindowHandles = pageHelper.getWebDriver().getWindowHandles();
-        String newMessageWindowHandle = pageHelper.getNewstWindowHandle(mainWindowHandle, allWindowHandles);
+        String newMessageWindowHandle = pageHelper.getNewestWindowHandle(mainWindowHandle, allWindowHandles);
         logger.info("Switching to " + newMessageWindowHandle);
         pageHelper.getWebDriver().switchTo().window(newMessageWindowHandle);
         WebElement body = pageHelper.getWebDriver().findElement(By.tagName(Attributes.BODY.getValue()));
@@ -64,7 +63,7 @@ class WindowTest extends TestBase {
     }
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/windows-tabs.php"})
-    public void testNewBrowserWindow(String url) {
+    void testNewBrowserWindow(String url) {
         initProperties();
         pageHelper.init(url);
         String mainWindowHandle = pageHelper.getWebDriver().getWindowHandle();
@@ -73,7 +72,7 @@ class WindowTest extends TestBase {
         newBrowserButton.click();
         logger.info("Current window handle " + mainWindowHandle);
         Set<String> allWindowHandles = pageHelper.getWebDriver().getWindowHandles();
-        String newWindowHandle = pageHelper.getNewstWindowHandle(mainWindowHandle, allWindowHandles);
+        String newWindowHandle = pageHelper.getNewestWindowHandle(mainWindowHandle, allWindowHandles);
         logger.info("Switching to " + newWindowHandle);
         pageHelper.getWebDriver().switchTo().window(newWindowHandle);
         TableTest innerTableTest = new TableTest();

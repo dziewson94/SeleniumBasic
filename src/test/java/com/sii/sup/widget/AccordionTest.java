@@ -2,7 +2,6 @@ package com.sii.sup.widget;
 
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.PropertyHelper;
 import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,9 +19,9 @@ import java.util.List;
 import static com.sii.sup.staticvalues.StaticValues.AccordionTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AccordionTest extends TestBase {
-    private static Logger logger = LoggerFactory.getLogger(AccordionTest.class.getSimpleName());
-    private List<String> sectionContent = new ArrayList<>();
+class AccordionTest extends TestBase {
+    private static final Logger logger = LoggerFactory.getLogger(AccordionTest.class.getSimpleName());
+    private final List<String> sectionContent = new ArrayList<>();
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/accordion.php"})
@@ -30,7 +29,7 @@ public class AccordionTest extends TestBase {
         pageHelper.init(url);
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         List<WebElement> sectionWebElements = pageHelper.findChildElementsByTag(Attributes.H3.getValue(), pageHelper.findElementById(getStringProperty(ACCORDION_DIV_PROPERTY)));
-        sectionWebElements.forEach(section -> parseAndStoreSectionText(section));
+        sectionWebElements.forEach(this::parseAndStoreSectionText);
         logger.info("Verifying collected data size is equal to no of sections and no of expected texts in properties");
         assertThat(sectionContent).
                 hasSameSizeAs(sectionWebElements).

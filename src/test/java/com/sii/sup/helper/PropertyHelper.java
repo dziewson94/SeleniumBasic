@@ -7,15 +7,13 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 
 public  class PropertyHelper {
-    public static final String TESTPARAM = "testparam";
-    private static Logger logger = LoggerFactory.getLogger(PropertyHelper.class.getSimpleName());
-    private Properties allProperties = new Properties();
+    private static final Logger logger = LoggerFactory.getLogger(PropertyHelper.class.getSimpleName());
+    private final Properties allProperties;
 
 
     PropertyHelper(Properties allProperties) {
         this.allProperties=allProperties;
-        allProperties.entrySet().forEach(entry ->
-               logger.debug(String.format("Found property:%s value:%s", entry.getKey(), entry.getValue())));
+        allProperties.forEach((key, value) -> logger.debug(String.format("Found property:%s value:%s", key, value)));
     }
 
 

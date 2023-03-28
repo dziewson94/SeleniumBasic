@@ -12,14 +12,13 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
 
 public class FileHelper {
-    protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class);
+    protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class.getSimpleName());
     public static final String TEST_FILE_TO_DOWNLOAD_XLSX = "test-file-to-download.xlsx";
 
     private FileHelper() {
@@ -76,10 +75,5 @@ public class FileHelper {
         return new File(getDownloadDirPath() + File.separator + TEST_FILE_TO_DOWNLOAD_XLSX).exists();
 
     }
-
-    static List<String> getDownloadDirFilesNames() {
-        return Arrays.stream(Objects.requireNonNull(new File(getDownloadDirPath()).listFiles())).map(File::getName).toList();
-    }
-
 
 }

@@ -1,9 +1,7 @@
 package com.sii.sup.interactions;
 
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.PropertyHelper;
 import com.sii.sup.helper.TestHelper;
-import com.sii.sup.staticvalues.StaticValues;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.Dimension;
@@ -16,13 +14,13 @@ import org.slf4j.LoggerFactory;
 import static com.sii.sup.staticvalues.StaticValues.Draggable.DRAGGABLE_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DraggableTest extends TestBase {
+class DraggableTest extends TestBase {
 
     private static final Logger logger = LoggerFactory.getLogger(DraggableTest.class.getSimpleName());
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/draggable.php"})
-    public void draggableTest(String url) {
+    void draggableTest(String url) {
         pageHelper.init(url);
         propertyHelper = TestHelper.getPropertyHelper(DraggableTest.class.getSimpleName());
         WebElement draggableEl = pageHelper.findElementById(getStringProperty(DRAGGABLE_PROPERTY));

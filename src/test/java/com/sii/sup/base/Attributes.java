@@ -11,8 +11,7 @@ public enum Attributes {
     BODY("body"),
     TYPE("type"),
     H3("h3"),
-    CLASS("class"),
-    LI("li");
+    CLASS("class");
 
     private final String value;
 

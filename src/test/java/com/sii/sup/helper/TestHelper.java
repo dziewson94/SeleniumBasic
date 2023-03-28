@@ -1,7 +1,6 @@
 package com.sii.sup.helper;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class TestHelper {
 
-    private static Logger logger = LoggerFactory.getLogger(TestHelper.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestHelper.class.getSimpleName());
 
 
 
@@ -82,15 +81,6 @@ public class TestHelper {
     public static PropertyHelper getPropertyHelper(String className) {
         return initializeProperties(className);
     }
-    public static List<String> getDownloadDirFilesNames() {
-        return FileHelper.getDownloadDirFilesNames();
-    }
-
-    public static WebElement findWebElementById(List<WebElement> elements, String id) {
-        return elements.stream().filter(el -> el.getAttribute("id").equals(id)).findFirst().orElse(elements.get(0));
-    }
-
-
 
     public static String generateRandomString(int length) {
         StringBuilder sb = new StringBuilder(length);

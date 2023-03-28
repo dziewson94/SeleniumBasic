@@ -3,7 +3,6 @@ package com.sii.sup.widget;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.TestHelper;
-import com.sii.sup.helper.PropertyHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -19,12 +18,12 @@ import java.util.List;
 import static com.sii.sup.staticvalues.StaticValues.Autocomplete.SEARCH_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AutocompleteTest extends TestBase {
-    private static Logger logger = LoggerFactory.getLogger(AutocompleteTest.class);
+class AutocompleteTest extends TestBase {
+    private static final Logger logger = LoggerFactory.getLogger(AutocompleteTest.class);
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/autocomplete.php"})
-    public void autocomplete(String url) {
+    void autocomplete(String url) {
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         WebElement searchBox = pageHelper.findElementById(getStringProperty(SEARCH_PROPERTY));

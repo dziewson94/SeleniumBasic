@@ -5,7 +5,6 @@ import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.TestHelper;
-import com.sii.sup.helper.PropertyHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,7 +28,7 @@ class FormTest extends TestBase {
 
     private final List<WebElement> randomOptionElement = new ArrayList<>();
     private File fileToUpload;
-    private final Logger logger = new LoggerContext().getLogger(TableTest.class);
+    private final Logger logger = new LoggerContext().getLogger(FormTest.class.getSimpleName());
     private final List<WebElement> allSelectedOption = new ArrayList<>();
     private String age;
     private String name;

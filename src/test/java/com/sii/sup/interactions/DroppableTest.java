@@ -1,10 +1,7 @@
 package com.sii.sup.interactions;
 
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.PropertyHelper;
 import com.sii.sup.helper.TestHelper;
-import com.sii.sup.staticvalues.StaticValues;
-import com.sii.sup.staticvalues.StaticValues.Droppable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebElement;
@@ -12,15 +9,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.sii.sup.staticvalues.StaticValues.Droppable.*;
+import static com.sii.sup.staticvalues.StaticValues.Droppable.DROPPABLE_DRAGGABLE_PROPERTY;
+import static com.sii.sup.staticvalues.StaticValues.Droppable.DROPPABLE_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DroppableTest extends TestBase {
+class DroppableTest extends TestBase {
     private static final Logger logger = LoggerFactory.getLogger(DroppableTest.class.getSimpleName());
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/droppable.php"})
-    public void droppableTest(String url) {
+    void droppableTest(String url) {
         pageHelper.init(url);
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         WebElement draggable = pageHelper.findElementById(getStringProperty(DROPPABLE_DRAGGABLE_PROPERTY));
