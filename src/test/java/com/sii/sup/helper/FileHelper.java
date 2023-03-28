@@ -18,8 +18,8 @@ import java.util.Properties;
 
 
 public class FileHelper {
-    protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class.getSimpleName());
     public static final String TEST_FILE_TO_DOWNLOAD_XLSX = "test-file-to-download.xlsx";
+    protected static final Logger logger = LoggerFactory.getLogger(FileHelper.class.getSimpleName());
 
     private FileHelper() {
     }
@@ -58,6 +58,17 @@ public class FileHelper {
             logger.warn(String.format("Failed to crete temp form file.%n%s", e.getMessage()));
         }
         return file;
+    }
+
+    static String createTempIMGFileInHighSiteResources() {
+        URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("tests/other/highsite/");
+        Path filePath = Paths.get("");
+        try {
+            filePath = Paths.get(Objects.requireNonNull(formResourcesUrl).toURI()).resolve("screenshot.png");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        return filePath.toString();
     }
 
     static String getDownloadDirPath() {

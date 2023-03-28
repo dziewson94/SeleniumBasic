@@ -131,6 +131,10 @@ public class TestHelper {
         return FileHelper.readProperties("tests/interaction/selectable/selectable.properties");
     }
 
+    public static String getPathForScreenshot() {
+        return FileHelper.createTempIMGFileInHighSiteResources();
+    }
+
     private static Properties readDraggableProperties() {
         return FileHelper.readProperties("tests/interaction/draggable/draggable.properties");
     }

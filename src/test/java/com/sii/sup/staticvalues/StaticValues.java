@@ -157,7 +157,9 @@ public class StaticValues {
 
 
     public static class HighSite {
-        public static final String SORTABLE_PROPERTY="sortable.id";
+        public static final String SCROLL_BUTTON_PROPERTY="scrollbutton.id";
+        public static final String HIGH_SITE_OFFSET_PROPERTY="offset";
+
     }
 
     public static class DemoQa {

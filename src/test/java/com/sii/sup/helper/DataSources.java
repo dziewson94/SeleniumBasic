@@ -40,6 +40,18 @@ public class DataSources {
         );
     }
 
+    public static Stream<Arguments> highSiteTestDataSource() {
+        return Stream.of(
+                Arguments.of("http://www.seleniumui.moderntester.pl/high-site.php",
+                        true
+                ),
+                Arguments.of("http://www.seleniumui.moderntester.pl/high-site.php",
+                        false
+                )
+        );
+    }
+
+
     public static Stream<Arguments> sortableTestDataSource() {
         return Stream.of(
                 Arguments.of("http://www.seleniumui.moderntester.pl/sortable.php",
