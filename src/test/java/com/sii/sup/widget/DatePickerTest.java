@@ -3,6 +3,7 @@ package com.sii.sup.widget;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -21,15 +22,15 @@ import java.util.Random;
 import static com.sii.sup.staticvalues.StaticValues.DataPicker.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DatePicker extends TestBase {
-    private static Logger logger = LoggerFactory.getLogger(DatePicker.class.getSimpleName());
+public class DatePickerTest extends TestBase {
+    private static Logger logger = LoggerFactory.getLogger(DatePickerTest.class.getSimpleName());
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/datepicker.php"})
     public void datePickerTest(String url) {
         LocalDate today = LocalDate.now();
         pageHelper.init(url);
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         logger.info("DatePicker tests properties loaded");
         WebElement datePickerElement = pageHelper.findElementById(getStringProperty(DATE_PICKER_ID_PROPERTY));
         setDate(today, datePickerElement);

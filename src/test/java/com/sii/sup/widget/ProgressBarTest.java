@@ -3,6 +3,7 @@ package com.sii.sup.widget;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -17,13 +18,13 @@ import java.time.Duration;
 import static com.sii.sup.staticvalues.StaticValues.Progressbar.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProgressBar extends TestBase {
-    private static final Logger logger = LoggerFactory.getLogger(ProgressBar.class);
+public class ProgressBarTest extends TestBase {
+    private static final Logger logger = LoggerFactory.getLogger(ProgressBarTest.class);
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/progressbar.php"})
     public void progressbarOne(String url) {
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         WebElement progressBar = pageHelper.findElementById(getStringProperty(PROGRESSBAR_ID_PROPERTY));
         WebElement progressLabel = progressBar.findElement(By.className(getStringProperty(PROGRESSBAR_LABEL_PROPERTY)));
@@ -36,7 +37,7 @@ public class ProgressBar extends TestBase {
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/progressbar.php"})
     public void progressbarTwo(String url) {
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         WebElement progressBar = pageHelper.findElementById(getStringProperty(PROGRESSBAR_ID_PROPERTY));
         WebElement progressLabel = progressBar.findElement(By.className(getStringProperty(PROGRESSBAR_LABEL_PROPERTY)));

@@ -2,9 +2,9 @@ package com.sii.sup.widget;
 
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
@@ -13,14 +13,14 @@ import org.slf4j.LoggerFactory;
 import static com.sii.sup.staticvalues.StaticValues.Slider.SLIDER_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Slider extends TestBase {
+public class SliderTest extends TestBase {
 
-    private static Logger logger = LoggerFactory.getLogger(Slider.class.getSimpleName());
+    private static Logger logger = LoggerFactory.getLogger(SliderTest.class.getSimpleName());
 
     @ParameterizedTest
     @MethodSource("com.sii.sup.helper.DataSources#sliderTestDataSource")
     public void slider(String url, int[] positions) {
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         Actions action = new Actions(pageHelper.getWebDriver());
         WebElement sliderButton = pageHelper.findElementById("slider");

@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +22,7 @@ class AlertTest extends TestBase {
     private final Logger logger = new LoggerContext().getLogger(AlertTest.class);
 
     public void initProperties() {
-        propertyHelper = new PropertyHelper(AlertTest.class.getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(AlertTest.class.getSimpleName());
         logger.info("Alert test properties loaded");
 
     }

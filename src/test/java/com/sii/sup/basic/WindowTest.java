@@ -5,6 +5,7 @@ import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -19,7 +20,7 @@ class WindowTest extends TestBase {
     private final Logger logger = new LoggerContext().getLogger(WindowTest.class);
 
     private void initProperties() {
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         logger.info("Window test properties loaded");
     }
     @ParameterizedTest

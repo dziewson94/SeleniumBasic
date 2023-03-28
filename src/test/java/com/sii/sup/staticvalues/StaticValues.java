@@ -132,4 +132,18 @@ public class StaticValues {
         public static final String TOOLTIP_MESSAGE_CLASS_PROPERTY="tooltip.message.class";
 
     }
+
+
+    public static class Draggable {
+        public static final String DRAGGABLE_PROPERTY = "draggable.id";
+    }
+
+    public static class Droppable {
+        public static final String DROPPABLE_PROPERTY = "droppable.id";
+        public static final String DROPPABLE_DRAGGABLE_PROPERTY = "droppable.draggable.id";
+
+    }
+    public static class Resizable {
+        public static final String RESIZABLE_PROPERTY="resizable.id";
+    }
 }

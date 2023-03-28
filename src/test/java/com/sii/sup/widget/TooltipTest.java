@@ -2,6 +2,7 @@ package com.sii.sup.widget;
 
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import com.sii.sup.staticvalues.StaticValues;
 import com.sii.sup.staticvalues.StaticValues.Tooltip;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +27,7 @@ public class TooltipTest extends TestBase {
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/tooltip.php"})
     public void tooltipTest(String url) {
         pageHelper.init(url);
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         WebElement tooltipElement = pageHelper.findElementById(getStringProperty(Tooltip.TOOLTIP_PROPERTY));
         // Create an instance of the Actions class
         Actions actions = new Actions(pageHelper.getWebDriver());

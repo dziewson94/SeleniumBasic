@@ -18,7 +18,7 @@ public class PageHelper {
     private static final Logger logger = LoggerFactory.getLogger(PageHelper.class.getSimpleName());
     private final WebDriver webDriver;
 
-    public PageHelper(WebDriver webDriver) {
+    PageHelper(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 

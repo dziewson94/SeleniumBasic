@@ -5,6 +5,7 @@ import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +29,7 @@ class MenuTest extends TestBase {
     private User userToCreate;
 
     private void initProperties() {
-        this.propertyHelper = new PropertyHelper(MenuTest.class.getSimpleName());
+        this.propertyHelper = TestHelper.getPropertyHelper(MenuTest.class.getSimpleName());
         logger.info("Menu test properties loaded");
 
     }

@@ -3,6 +3,7 @@ package com.sii.sup.widget;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -27,7 +28,7 @@ public class AccordionTest extends TestBase {
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/accordion.php"})
     void createUserModal(String url) {
         pageHelper.init(url);
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         List<WebElement> sectionWebElements = pageHelper.findChildElementsByTag(Attributes.H3.getValue(), pageHelper.findElementById(getStringProperty(ACCORDION_DIV_PROPERTY)));
         sectionWebElements.forEach(section -> parseAndStoreSectionText(section));
         logger.info("Verifying collected data size is equal to no of sections and no of expected texts in properties");

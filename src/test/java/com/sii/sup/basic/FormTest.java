@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.Attributes;
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.Helper;
+import com.sii.sup.helper.TestHelper;
 import com.sii.sup.helper.PropertyHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -39,9 +39,9 @@ class FormTest extends TestBase {
 
     private void initData() {
         logger.info("Initializing test data");
-        propertyHelper = new PropertyHelper(this.getClass().getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         logger.info("Form test properties loaded");
-        fileToUpload = Helper.getTempFileForFormTest();
+        fileToUpload = TestHelper.getTempFileForFormTest();
         logger.info(String.format("Test will use name:%s lastname:%s email:%s age:%s in input forms", name, lastName, email, age));
 
     }
@@ -60,7 +60,7 @@ class FormTest extends TestBase {
         downloadTestFile();
         verifyTestResult();
         submit();
-        Helper.deleteTestFile();
+        TestHelper.deleteTestFile();
     }
 
 
@@ -107,7 +107,7 @@ class FormTest extends TestBase {
         assertThat(allSelectedOption).hasSize(3);
         assertThat(allSelectedOption.stream().anyMatch(el -> el.getAttribute(Attributes.VALUE.getValue()).equalsIgnoreCase(getStringProperty(SWITCH_PROPERTY)))).isTrue();
         assertThat(allSelectedOption.stream().anyMatch(el -> el.getAttribute(Attributes.VALUE.getValue()).equalsIgnoreCase(getStringProperty(WAIT_PROPERTY)))).isTrue();
-        assertThat(Helper.isTestFileExist()).
+        assertThat(TestHelper.isTestFileExist()).
                 as("Failed to download test file").
                 isTrue();
         assertThat(countFilesInDownloadDir()).
@@ -117,22 +117,22 @@ class FormTest extends TestBase {
 
     private void downloadTestFile() {
         WebElement downloadButton = pageHelper.getWebDriver().findElement(By.xpath("//*[contains(text(), 'Download')]"));
-        Helper.deleteTestFile();
+        TestHelper.deleteTestFile();
         numOfFilesInDownloadDir = countFilesInDownloadDir();
         logger.info(String.format("There is %d files in download directory", numOfFilesInDownloadDir));
         downloadButton.click();
-        new WebDriverWait(pageHelper.getWebDriver(), Duration.ofSeconds(20)).until(d -> Helper.isTestFileExist());
+        new WebDriverWait(pageHelper.getWebDriver(), Duration.ofSeconds(20)).until(d -> TestHelper.isTestFileExist());
         logger.info(String.format("Now there is %d files in download directory", countFilesInDownloadDir()));
         logger.info("Files in download dir:");
     }
 
     private int countFilesInDownloadDir() {
-        File downloadDir = new File(Helper.getDownloadDirPath());
+        File downloadDir = new File(TestHelper.getDownloadDirPath());
         return Objects.requireNonNull(downloadDir.listFiles()).length;
     }
 
     private void choseRandomOption(String elementId) {
-        WebElement randomElement = (WebElement) Helper.getRandomListElement(pageHelper.getWebDriver().findElements(By.name(getStringProperty(elementId))));
+        WebElement randomElement = (WebElement) TestHelper.getRandomListElement(pageHelper.getWebDriver().findElements(By.name(getStringProperty(elementId))));
         randomElement.click();
         randomOptionElement.add(randomElement);
     }
@@ -156,7 +156,7 @@ class FormTest extends TestBase {
         WebElement selectWebElement = pageHelper.getWebDriver().findElement(By.id(selectId));
         Select select = new Select(selectWebElement);
         allSelectedOption.addAll(select.getAllSelectedOptions());
-        WebElement selectedContinentWebElement = (WebElement) Helper.getRandomListElement(select.getOptions());
+        WebElement selectedContinentWebElement = (WebElement) TestHelper.getRandomListElement(select.getOptions());
         logger.info(String.format("Selecting %s from %s", selectedContinentWebElement.getText(), selectId));
         selectedContinentWebElement.click();
     }

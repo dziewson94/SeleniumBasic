@@ -5,6 +5,7 @@ import ch.qos.logback.classic.LoggerContext;
 import com.sii.sup.base.TestBase;
 import com.sii.sup.helper.FileHelper;
 import com.sii.sup.helper.PropertyHelper;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +23,7 @@ class IframeTest extends TestBase {
     private final Logger logger = new LoggerContext().getLogger(TableTest.class);
 
     private void initProperties() {
-        this.propertyHelper = new PropertyHelper(IframeTest.class.getSimpleName());
+        this.propertyHelper = TestHelper.getPropertyHelper(IframeTest.class.getSimpleName());
         logger.info("Iframe test properties loaded");
     }
 

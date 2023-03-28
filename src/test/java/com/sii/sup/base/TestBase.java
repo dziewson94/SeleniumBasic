@@ -1,13 +1,12 @@
 package com.sii.sup.base;
 
-import com.sii.sup.helper.Helper;
+import com.sii.sup.helper.TestHelper;
 import com.sii.sup.helper.PageHelper;
 import com.sii.sup.helper.PropertyHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -39,15 +38,17 @@ public class TestBase {
         ChromeOptions options = new ChromeOptions();
         logger.info(
                 String.format("Adding options:%n%s%n%s:false%n%s:%s",
-                        REMOTE_ALLOW_ORIGINS, DOWNLOAD_PROMPT_FOR_DOWNLOAD, DOWNLOAD_DEFAULT_DIRECTORY, Helper.getDownloadDirPath()));
+                        REMOTE_ALLOW_ORIGINS, DOWNLOAD_PROMPT_FOR_DOWNLOAD, DOWNLOAD_DEFAULT_DIRECTORY, TestHelper.getDownloadDirPath()));
         options.addArguments(REMOTE_ALLOW_ORIGINS);
         Map<String, Object> prefs = new HashMap<>();
         prefs.put(DOWNLOAD_PROMPT_FOR_DOWNLOAD, false);
-        prefs.put(DOWNLOAD_DEFAULT_DIRECTORY, Helper.getDownloadDirPath());
+        prefs.put(DOWNLOAD_DEFAULT_DIRECTORY, TestHelper.getDownloadDirPath());
         options.setExperimentalOption(PREFS, prefs);
+        options.addArguments("--window-position=-0,-1080");
         webDriver = new ChromeDriver(options);
         webDriver.manage().window().maximize();
-        pageHelper = new PageHelper(webDriver);
+
+        pageHelper = TestHelper.getPageHelper(webDriver);
     }
 
 

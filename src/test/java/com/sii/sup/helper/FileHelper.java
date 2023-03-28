@@ -46,7 +46,7 @@ public class FileHelper {
     }
 
     static File createTempFileInFormResources() {
-        String content = Helper.generateRandomString(20000);
+        String content = TestHelper.generateRandomString(20000);
         File file = new File("");
         try {
             URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("form");
@@ -79,55 +79,6 @@ public class FileHelper {
 
     static List<String> getDownloadDirFilesNames() {
         return Arrays.stream(Objects.requireNonNull(new File(getDownloadDirPath()).listFiles())).map(File::getName).toList();
-    }
-
-    static Properties readTableProperties() {
-        return readProperties("table/table.properties");
-    }
-
-    static Properties readWindowProperties() {
-        return readProperties("window/window.properties");
-    }
-    static Properties readDatepickerProperties() {
-        return readProperties("datepicker/datepicker.properties");
-    }
-    static Properties readAutocompleteProperties() {
-        return readProperties("autocomplete/autocomplete.properties");
-    }
-    static Properties readSliderProperties() {
-        return readProperties("slider/slider.properties");
-    }
-
-    static Properties readTooltipProperties() {
-        return readProperties("tooltip/tooltip.properties");
-    }
-    static Properties readSelectableProperties() {
-        return readProperties("selectable/selectable.properties");
-    }
-
-
-    static Properties readProgressbarProperties() {
-        return readProperties("progressbar/progressbar.properties");
-    }
-
-    static Properties readFormProperties() {
-        return readProperties("form/form.properties");
-    }
-
-    public static Properties readIframeProperties() {
-        return readProperties("iframe/iframe.properties");
-    }
-
-    static Properties readMenuProperties() {
-        return readProperties("menu/menu.properties");
-    }
-
-    static Properties readAccordionProperties() {
-        return readProperties("accordion/accordion.properties");
-    }
-
-    static Properties readAlertProperties() {
-        return FileHelper.readProperties("alert/alert.properties");
     }
 
 

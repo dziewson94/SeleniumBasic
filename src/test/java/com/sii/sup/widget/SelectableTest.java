@@ -1,33 +1,27 @@
 package com.sii.sup.widget;
 
 import com.sii.sup.base.TestBase;
-import com.sii.sup.helper.Helper;
 import com.sii.sup.helper.PropertyHelper;
-import com.sii.sup.staticvalues.StaticValues;
+import com.sii.sup.helper.TestHelper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Random;
 
 import static com.sii.sup.staticvalues.StaticValues.Selectable.*;
 
-public class Selectable extends TestBase {
+public class SelectableTest extends TestBase {
 
-    private static final Logger logger = LoggerFactory.getLogger(Selectable.class);
+    private static final Logger logger = LoggerFactory.getLogger(SelectableTest.class);
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/selectmenu.php"})
     public void selectableTest(String url) {
-        propertyHelper = new PropertyHelper(Selectable.class.getSimpleName());
+        propertyHelper = TestHelper.getPropertyHelper(SelectableTest.class.getSimpleName());
         pageHelper.init(url);
 
         WebElement speedDropdown = pageHelper.findElementById(getStringProperty(SELECTABLE_SPEED_PROPERTY));
