@@ -19,17 +19,17 @@ import java.time.Duration;
 import static com.sii.sup.staticvalues.StaticValues.Progressbar.*;
 import static org.assertj.core.api.Assertions.assertThat;
 @Execution(ExecutionMode.CONCURRENT)
-
-public class ProgressBarTest extends TestBase {
+class ProgressBarTest extends TestBase {
     private static final Logger logger = LoggerFactory.getLogger(ProgressBarTest.class);
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/progressbar.php"})
-    public void progressbarOne(String url) {
+    void progressbarOne(String url) {
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         WebElement progressBar = pageHelper.findElementById(getStringProperty(PROGRESSBAR_ID_PROPERTY));
         WebElement progressLabel = progressBar.findElement(By.className(getStringProperty(PROGRESSBAR_LABEL_PROPERTY)));
+        logger.info("Waiting for progress  bar");
         new WebDriverWait(pageHelper.getWebDriver(), Duration.ofSeconds(30)).
                 until(ExpectedConditions.textToBePresentInElement(progressLabel, getStringProperty(PROGRESSBAR_LABEL_COMPLETE__PROPERTY)));
         assertThat(progressLabel.getText()).isEqualTo(getStringProperty(PROGRESSBAR_LABEL_COMPLETE__PROPERTY));
@@ -38,7 +38,7 @@ public class ProgressBarTest extends TestBase {
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/progressbar.php"})
-    public void progressbarTwo(String url) {
+    void progressbarTwo(String url) {
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         WebElement progressBar = pageHelper.findElementById(getStringProperty(PROGRESSBAR_ID_PROPERTY));

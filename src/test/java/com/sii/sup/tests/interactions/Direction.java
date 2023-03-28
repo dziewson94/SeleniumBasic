@@ -1,5 +1,6 @@
 package com.sii.sup.tests.interactions;
 
 public enum Direction {
-LEFT,RIGHT,UP,DOWN;
+LEFT,RIGHT,UP,DOWN
+
 }

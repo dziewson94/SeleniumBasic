@@ -62,7 +62,8 @@ public class FileHelper {
 
     static String createTempIMGFileInHighSiteResources() {
         URL formResourcesUrl = FileHelper.class.getClassLoader().getResource("tests/other/highsite/");
-        Path filePath = Paths.get("");
+        Paths.get("");
+        Path filePath;
         try {
             filePath = Paths.get(Objects.requireNonNull(formResourcesUrl).toURI()).resolve("screenshot.png");
         } catch (URISyntaxException e) {

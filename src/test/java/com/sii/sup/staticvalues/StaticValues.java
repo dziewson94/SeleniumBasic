@@ -130,7 +130,7 @@ public class StaticValues {
         public static final String TOOLTIP_PROPERTY = "tooltip.id";
         public static final String TOOLTIP_SUCCESS_PROPERTY = "tooltip.sucess";
 
-        public static final String TOOLTIP_MESSAGE_CLASS_PROPERTY="tooltip.message.class";
+        public static final String TOOLTIP_MESSAGE_CLASS_PROPERTY = "tooltip.message.class";
 
     }
 
@@ -144,25 +144,36 @@ public class StaticValues {
         public static final String DROPPABLE_DRAGGABLE_PROPERTY = "droppable.draggable.id";
 
     }
+
     public static class Resizable {
-        public static final String RESIZABLE_PROPERTY="resizable.id";
+        public static final String RESIZABLE_PROPERTY = "resizable.id";
     }
+
     public static class SelectableInteractions {
-        public static final String SELECTABLE_PROPERTY="selectable.id";
+        public static final String SELECTABLE_PROPERTY = "selectable.id";
     }
 
     public static class Sortable {
-        public static final String SORTABLE_PROPERTY="sortable.id";
+        public static final String SORTABLE_PROPERTY = "sortable.id";
     }
 
 
     public static class HighSite {
-        public static final String SCROLL_BUTTON_PROPERTY="scrollbutton.id";
-        public static final String HIGH_SITE_OFFSET_PROPERTY="offset";
+        public static final String SCROLL_BUTTON_PROPERTY = "scrollbutton.id";
+        public static final String HIGH_SITE_OFFSET_PROPERTY = "offset";
 
     }
 
     public static class DemoQa {
-        public static final String SORTABLE_PROPERTY="sortable.id";
+        public static final String SUBJECTS_MATHS_PROPERTY = "subjects.maths";
+        public static final String SUBJECTS_ARTS_PROPERTY = "subjects.arts";
+
+        public static final String SUBJECTS_RESULT_CONTAINER_PROPERTY = "subjects.result.container";
+
+        public static final String SUBJECTS_INPUT_ID_PROPERTY = "subjects.input.id";
+
+        public static final String SUBJECTS_MENU_PROPERTY = "subjects.menu";
+
+
     }
 }

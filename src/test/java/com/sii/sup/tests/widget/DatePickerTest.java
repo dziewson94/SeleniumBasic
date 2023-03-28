@@ -23,13 +23,12 @@ import java.util.Random;
 import static com.sii.sup.staticvalues.StaticValues.DataPicker.*;
 import static org.assertj.core.api.Assertions.assertThat;
 @Execution(ExecutionMode.CONCURRENT)
-
-public class DatePickerTest extends TestBase {
-    private static Logger logger = LoggerFactory.getLogger(DatePickerTest.class.getSimpleName());
+class DatePickerTest extends TestBase {
+    private static final Logger logger = LoggerFactory.getLogger(DatePickerTest.class.getSimpleName());
 
     @ParameterizedTest
     @ValueSource(strings = {"http://www.seleniumui.moderntester.pl/datepicker.php"})
-    public void datePickerTest(String url) {
+    void datePickerTest(String url) {
         LocalDate today = LocalDate.now();
         pageHelper.init(url);
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
@@ -66,7 +65,8 @@ public class DatePickerTest extends TestBase {
         int providedMonth = dateTime.getMonthValue();
         int providedYear = dateTime.getYear();
         WebElement table = datepicker.findElement(By.xpath(getStringProperty(TABLE_PROPERTY)));
-        List<WebElement> currentMonthRows = table.findElements(By.tagName(Attributes.TABLE_COLUMN.getValue()));
+        table.findElements(By.tagName(Attributes.TABLE_COLUMN.getValue()));
+        List<WebElement> currentMonthRows;
         goToSelectedYear(datepicker, providedYear);
         currentMonthRows = goToSelectedMonth(datepicker, providedMonth);
         for (WebElement tableRow : currentMonthRows) {
@@ -130,7 +130,7 @@ public class DatePickerTest extends TestBase {
         return list.size() / 2;
     }
 
-    private List<WebElement> goToSelectedYear(WebElement datepicker, int year) {
+    private void goToSelectedYear(WebElement datepicker, int year) {
         WebElement table;
         new WebDriverWait(pageHelper.getWebDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(datepicker));
 
@@ -151,7 +151,6 @@ public class DatePickerTest extends TestBase {
             currentMonthRows = previousElementClick(datepicker);
 
         }
-        return currentMonthRows;
     }
 
     private void assertDate(LocalDate date, WebElement el) {

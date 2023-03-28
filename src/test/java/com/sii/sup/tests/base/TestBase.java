@@ -27,7 +27,6 @@ public class TestBase {
     private static final Logger logger = LoggerFactory.getLogger(TestBase.class.getSimpleName());
     protected PageHelper pageHelper;
     protected PropertyHelper propertyHelper;
-    private WebDriver webDriver;
 
     @BeforeAll
     public static void setupAll() {
@@ -48,7 +47,7 @@ public class TestBase {
         prefs.put(DOWNLOAD_DEFAULT_DIRECTORY, TestHelper.getDownloadDirPath());
         options.setExperimentalOption(PREFS, prefs);
         options.addArguments("--window-position=-0,-1080");
-        webDriver = new ChromeDriver(options);
+        WebDriver webDriver = new ChromeDriver(options);
         webDriver.manage().window().maximize();
 
         pageHelper = TestHelper.getPageHelper(webDriver);

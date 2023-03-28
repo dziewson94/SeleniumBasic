@@ -15,14 +15,13 @@ import static com.sii.sup.staticvalues.StaticValues.Slider.SLIDER_BUTTON_PROPERT
 import static com.sii.sup.staticvalues.StaticValues.Slider.SLIDER_PROPERTY;
 import static org.assertj.core.api.Assertions.assertThat;
 @Execution(ExecutionMode.CONCURRENT)
+class SliderTest extends TestBase {
 
-public class SliderTest extends TestBase {
-
-    private static Logger logger = LoggerFactory.getLogger(SliderTest.class.getSimpleName());
+    private static final Logger logger = LoggerFactory.getLogger(SliderTest.class.getSimpleName());
 
     @ParameterizedTest
     @MethodSource("com.sii.sup.helper.DataSources#sliderTestDataSource")
-    public void slider(String url, int[] positions) {
+    void slider(String url, int[] positions) {
         propertyHelper = TestHelper.getPropertyHelper(this.getClass().getSimpleName());
         pageHelper.init(url);
         Actions action = new Actions(pageHelper.getWebDriver());
