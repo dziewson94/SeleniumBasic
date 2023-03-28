@@ -29,6 +29,15 @@ public class DataSources {
         );
     }
 
+    public static Stream<Arguments> selectableTestDataSource() {
+        return Stream.of(
+                Arguments.of("http://www.seleniumui.moderntester.pl/selectable.php",
+                        new int[]
+                                {1, 3, 4}
+                )
+        );
+    }
+
     public static Stream<Arguments> resizableTestDataSource() {
         List<Map<Direction, Integer>> steps = new ArrayList<>();
 

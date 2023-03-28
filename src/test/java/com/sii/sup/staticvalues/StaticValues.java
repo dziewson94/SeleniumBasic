@@ -16,7 +16,6 @@ public class StaticValues {
 
     public static class FormTest {
         public static final String DESIRED_PROF_PROPERTY = "DESIRED_PROF";
-        public static final String PROF_SEL_PROPERTY = "PROF_SEL";
         public static final String SEX_SEL_PROPERTY = "SEX_SEL";
         public static final String LAST_NAME_PROPERTY = "LAST_NAME";
         public static final String EMAIL_PROPERTY = "EMAIL";
@@ -145,5 +144,8 @@ public class StaticValues {
     }
     public static class Resizable {
         public static final String RESIZABLE_PROPERTY="resizable.id";
+    }
+    public static class SelectableInteractions {
+        public static final String SELECTABLE_PROPERTY="selectable.id";
     }
 }

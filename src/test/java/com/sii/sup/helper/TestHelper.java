@@ -44,6 +44,7 @@ public class TestHelper {
             case ("DraggableTest") -> allProperties = readDraggableProperties();
             case ("DroppableTest") -> allProperties = readDroppableProperties();
             case ("ResizableTest") ->allProperties= readResizableProperties();
+            case ("SelectableInteractionsTest") -> allProperties = readSelectableInteractionsProperties();
         }
         logger.debug("Initializing properties configuration for " + className);
 
@@ -112,6 +113,9 @@ public class TestHelper {
         return FileHelper.readProperties("resizable/resizable.properties");
     }
 
+    private static Properties readSelectableInteractionsProperties() {
+        return FileHelper.readProperties("selectable_interactions/selectable.properties");
+    }
     private static Properties readDraggableProperties() {
         return FileHelper.readProperties("draggable/draggable.properties");
     }
